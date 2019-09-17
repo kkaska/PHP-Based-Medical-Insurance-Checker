@@ -94,6 +94,12 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+
+                <form action="submit.php" method="post">
+                  ID: <input type="text" name="ID"><br>
+                <input type="submit">
+              </form>
+
             </div>
         </div>
     </body>
