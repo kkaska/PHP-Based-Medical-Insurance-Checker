@@ -22,7 +22,7 @@ class CreateTreatmentDetailsTable extends Migration
             $table->integer('Year');
             $table->integer('TotalDischarges');
 
-            $table->primary(['DrgId', 'HospitalId']);
+            $table->primary(['DrgId', 'HospitalId', 'Year']);
         });
     }
 
