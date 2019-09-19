@@ -6,4 +6,6 @@
         <li>{{ $hospitals[$i]->Name }}</li>
     @endfor
     </ul>
+
+    {{ $hospitals->links() }}
 @endsection
