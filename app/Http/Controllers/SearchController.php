@@ -3,10 +3,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Hospital;
 use Illuminate\Routing\Controller as BaseController;
 
 
 class SearchController extends BaseController
 {
-    
+    public function search()
+    {
+        $hospitals = Hospital::all();
+
+        return view('search', [
+            'hospitals' => $hospitals
+        ]);
+    }
 }
