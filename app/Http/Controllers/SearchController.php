@@ -29,11 +29,13 @@ class SearchController extends BaseController
                 $join->on('treatmentdetails.DrgId', '=', 'drgdefinition.Id')
                     ->where('drgdefinition.Name', 'LIKE', '%' . $disease . '%');
             })
-            ->select('drgdefinition.Name as DiseaseName', 'hospital.Name as HospitalName', 'treatmentdetails.AverageCoveredCharges', 'treatmentdetails.Year')
+            ->select('drgdefinition.Name as DiseaseName', 'hospital.Name as HospitalName', 'hospital.City', 'treatmentdetails.AverageCoveredCharges', 'treatmentdetails.Year')
             ->paginate(20);
 
         return view('treatments-list', [
-            'treatments' => $treatments
+            'treatments' => $treatments,
+            'disease' => $disease,
+            'city' => $city
         ]);
     }
 }
