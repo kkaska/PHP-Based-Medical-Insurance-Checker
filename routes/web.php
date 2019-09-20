@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,3 +20,5 @@ Route::get('home', function () {
 });
 
 Route::get('hospitals', 'HospitalController@list');
+
+
