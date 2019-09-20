@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form>
+        {{ Form::open(array('url' => 'search', 'method' => 'post')) }}
             <legend class="text-center">Search for disease</legend>
             <div class="form-group">
                 <div class="input-group">
@@ -20,7 +20,7 @@
                     <input type="text" class="form-control form-control-lg" aria-label="City">
                 </div>
             </div>
-            <input type="submit" class="form-control btn btn-success">
-        </form>
+            {{ Form::submit('Submit', array('class' => 'form-control btn btn-success')) }}
+        {{ Form::close() }}
     </div>
 @endsection
