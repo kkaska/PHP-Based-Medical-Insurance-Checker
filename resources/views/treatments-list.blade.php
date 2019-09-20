@@ -8,11 +8,11 @@
         <table class="table table-striped table-hover">
             <thead class="table-primary">
             <tr>
-                <th scope="col">Disease Name</th>
-                <th scope="col">Hospital Name</th>
-                <th scope="col">City</th>
-                <th scope="col">Average Charges</th>
-                <th scope="col">Year</th>
+                <th scope="col" class="align-middle">Disease Name</th>
+                <th scope="col" class="align-middle">Hospital Name</th>
+                <th scope="col" class="align-middle">City</th>
+                <th scope="col" class="align-middle">Average Charges</th>
+                <th scope="col" class="align-middle">Year</th>
             </tr>
             </thead>
             <tbody>
