@@ -17,7 +17,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">City</span>
                     </div>
-                    <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City">
+                    <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" required>
                 </div>
             </div>
             {{ Form::submit('Search', array('class' => 'form-control btn btn-success')) }}
