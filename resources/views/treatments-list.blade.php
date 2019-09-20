@@ -21,7 +21,7 @@
                     <td>{{ $treatments[$i]->DiseaseName }}</td>
                     <td>{{ $treatments[$i]->HospitalName }}</td>
                     <td>{{ $treatments[$i]->City }}</td>
-                    <td>{{ $treatments[$i]->AverageCoveredCharges }}</td>
+                    <td>@parseMoney($treatments[$i]->AverageCoveredCharges)</td>
                     <td>{{ $treatments[$i]->Year }}</td>
                 </tr>
             @endfor
