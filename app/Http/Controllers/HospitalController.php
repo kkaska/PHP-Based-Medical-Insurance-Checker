@@ -12,7 +12,7 @@ class HospitalController
     {
         $hospitals = Hospital::paginate(20);
 
-        return view('search', [
+        return view('hospitals-list', [
             'hospitals' => $hospitals
         ]);
     }

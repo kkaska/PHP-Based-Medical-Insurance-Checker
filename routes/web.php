@@ -21,4 +21,6 @@ Route::get('home', function () {
 
 Route::get('hospitals', 'HospitalController@list');
 
+Route::post('search', 'SearchController@search');
 
+Route::get('search', 'SearchController@getView');
