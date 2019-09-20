@@ -3,6 +3,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Craneware: Medical Procedure Locator</title>
+<title><img src="https://img.icons8.com/dotty/50/000000/find-hospital.png">HealthScanner</title>
 
 <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
