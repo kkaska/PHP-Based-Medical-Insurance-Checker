@@ -11,6 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('home', function () {
+    return view('welcome');
+});
+
+Route::get('hospitals', 'HospitalController@list');
+
+
+Route::get('search', 'SearchController@getView');
+
+Route::get('search/list', 'SearchController@list');
+Route::post('search/list', 'SearchController@list');
