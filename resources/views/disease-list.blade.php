@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<p>This page needs fixed a bit, the cards shouldn't touch the sides of the page and the map should probably have a fixed height</p>
+<p>This page needs fixed a bit, the cards need to be responsive and the map should probably have a fixed height, but good enough for now</p>
 <p>Map is also completely unconnected -> to do later</p>
+<p> make the table scrollable</p>
+<div class="container">
     <div class="card-group">
-        <div class="card">
+        <div class="card col overflow:auto">
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>
@@ -28,7 +30,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card col-lg-5">
             <div class="card-body">
                 <!--Google map-->
                 <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
@@ -38,4 +40,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
