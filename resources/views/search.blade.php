@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+@include ('layouts.partials.breadcrumbs')
+
     <div class="container">
         {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
             <legend class="text-center">Search for disease</legend>

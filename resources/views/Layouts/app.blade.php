@@ -7,7 +7,7 @@
   text-align: center;
   font-size: 35px;
   color: white;
-}
+  }
   .absolute {
     position: absolute;
     top:25%;
@@ -17,12 +17,12 @@
   <head>
       @include('layouts.partials.head')
   </head>
-  <body>
 
+  <body class="bg-primary">
     <div class="content">
       @yield('content')
     </div>
-
     @include('layouts.partials.footer')
   </body>
+  
 </html>
