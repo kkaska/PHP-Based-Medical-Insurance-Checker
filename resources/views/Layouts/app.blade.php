@@ -8,13 +8,16 @@
   font-size: 35px;
   color: white;
 }
+  .absolute {
+    position: absolute;
+    top:25%;
+    width: 100%;
+  }
 </style>
   <head>
       @include('layouts.partials.head')
   </head>
   <body>
-
-    @include('layouts.partials.header')
 
     <div class="content">
       @yield('content')
