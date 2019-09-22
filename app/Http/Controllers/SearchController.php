@@ -24,4 +24,18 @@ class SearchController extends BaseController
             'diseases' => $diseases
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function autocomplete(Request $request)
+    {
+        $data = Disease::select("Name")
+                ->where("Name","LIKE","%{$request->input('query')}%")
+                ->get();
+   
+        return response()->json($data);
+    }
 }

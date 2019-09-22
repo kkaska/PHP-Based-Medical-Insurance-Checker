@@ -1,3 +1,5 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <div class="absolute">
         <div class="row">
             <div class="col-sm-12 col-md-7 col-lg-5 my-auto mx-auto">
@@ -10,9 +12,23 @@
                                     <hr class="my-4" style="width: 80%;">
                                     {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
                                         <div class="form-group">
-                                                <input type="text" class="form-control form-control-lg" id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autofocus>
+                                                <input class="typeahead form-control" type="text" id="disease" name="disease" aria-label="Disease" placeholder="Procedure" >
                                                 <label style="display: none" for="disease">procedure</label>
                                         </div>
+
+                                        <!-- Script to autocomplete form @author Finn  --->
+                                        <script type="text/javascript">
+                                            var path = "{{ route('autocomplete') }}";
+                                            $('input.typeahead').typeahead({
+                                                source:  function (query, process) {
+                                                return $.get(path, { query: query }, function (data) {
+                                                        return process(data);
+                                                    });
+                                                }
+                                            });
+                                        </script>
+
+
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="City" required>
