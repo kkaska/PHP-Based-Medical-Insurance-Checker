@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center ">
         <div class="col-xl-12">
             <div class="center-card">
