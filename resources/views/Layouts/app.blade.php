@@ -38,7 +38,6 @@
   </head>
 
   <body class="bg-primary">
-      @include ('layouts.partials.breadcrumbs')
     <div class="content">
       @yield('content')
     </div>
