@@ -1,11 +1,11 @@
 <div class="absolute">
-    <div class="container">
+    <div class="side">
         <div class="row">
             <div class="col-sm-12 col-md-7 col-lg-5 my-auto mx-auto">
                 <p>*the navbar doesn't work (google laravel breadcrumbs)</p>
                     <div class="card card-center my-5 bg-white" style="border: none; border-radius: 15px;">
                             <div class="card-body">
-                            <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px>HealthScanner</h1>
+                            <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
                                     <hr class="my-4" style="width: 80%;">
                                     {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
                                         <div class="form-group">

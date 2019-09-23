@@ -11,7 +11,7 @@
   .absolute {
     position: absolute;
     top:25%;
-    width: 100%;
+    width: 50%;
   }
   .map-container{
     overflow:hidden;
@@ -25,6 +25,12 @@
     height:100%;
     width:100%;
     position:absolute;
+  }
+  .side {
+    top: 0%;
+    width: 200%;
+    
+
   }
 </style>
   <head>
