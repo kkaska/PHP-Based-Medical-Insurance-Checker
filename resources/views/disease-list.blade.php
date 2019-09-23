@@ -8,24 +8,26 @@
     <div class="card-group">
         <div class="card col overflow:auto">
             <div class="card-body">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Hospital</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                    </thead>
+                <table class="table table-hover table-sm">
+                    <tr>
+                        <th scope="col" class="align-middle">Treatment</th>
+                        <th scope="col" class="align-middle">Hospital</th>
+                        <th scope="col" class="align-middle">City</th>
+                        <th scope="col" class="align-middle">Average Charges</th>
+                    </tr>
                     <tbody>
-                        @for($i = 0; $i < count($diseases); $i++)
-                            <tr scope="row">
-                            <td>{{ $diseases[$i]->Name }}</td>
-                            </tr>
-                        @endfor
+                    @for($i = 0; $i < count($treatments); $i++)
+                        <tr scope="row">
+                            <td>{{ $treatments[$i]->DiseaseName }}</td>
+                            <td>{{ $treatments[$i]->HospitalName }}</td>
+                            <td>{{ $treatments[$i]->City }}</td>
+                            <td>@parseMoney($treatments[$i]->AverageCoveredCharges)</td>
+                        </tr>
+                    @endfor
                     </tbody>
                 </table>
             <div class="row justify-content-center">
-                {{ $diseases->appends(request()->input())->links() }}
+                {{ $treatments->appends(request()->input())->links() }}
             </div>
             </div>
         </div>
