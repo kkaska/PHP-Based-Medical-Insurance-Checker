@@ -32,10 +32,16 @@ class SearchController extends BaseController
      */
     public function autocomplete(Request $request)
     {
-        $data = Disease::select("Name")
+        $query = Disease::select("Name")
                 ->where("Name","LIKE","%{$request->input('query')}%")
                 ->get();
+
+
+        $data = array();
+        foreach($query as $record) {
+            $data[] = $record->Name;
+        }
    
-        return response()->json($data);
+       return response()->json($data);
     }
 }
