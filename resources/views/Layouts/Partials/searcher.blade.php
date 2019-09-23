@@ -1,4 +1,5 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <div class="absolute">
         <div class="row">
@@ -21,7 +22,9 @@
                                             var path = "{{ route('autocomplete') }}";
                                             $('input.typeahead').typeahead({
                                                 source:  function (query, process) {
+                                                    console.log(query);
                                                 return $.get(path, { query: query }, function (data) {
+                                                        console.log(data);
                                                         return process(data);
                                                     });
                                                 }
