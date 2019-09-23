@@ -21,9 +21,9 @@ class SearchController extends BaseController
     {
         $disease = $request->get('disease');
         $city = $request->get('city');
-        $treatments = Treatment::search($disease, $city);
+        $treatments = Treatment::search($disease, $city)->paginate(10);
 
-        return view('treatments-list', [
+        return view('disease-list', [
             'treatments' => $treatments,
             'disease' => $disease,
             'city' => $city

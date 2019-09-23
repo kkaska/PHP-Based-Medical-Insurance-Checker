@@ -12,7 +12,7 @@ class Treatment extends Model
     public $timestamps = false;
 
     /*
-     * Joins the Hospital, Treatment and dRGDefinition tables on Ids and returns a paginated result
+     * Joins the Hospital, Treatment and dRGDefinition tables on Ids and returns a query as a result.
      * */
     public static function search(string $disease, string $city)
     {
@@ -30,8 +30,7 @@ class Treatment extends Model
                 'hospital.City',
                 'treatmentdetails.AverageCoveredCharges',
                 'treatmentdetails.Year'
-            )
-            ->paginate(SearchController::PAGE_SIZE);
+            );
 
         return $treatments;
     }
