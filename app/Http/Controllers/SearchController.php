@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class SearchController extends BaseController
 {
-    public const PAGE_SIZE = 20;        //TODO: there is probably a better place for this
+    public const PAGE_SIZE = 10;        //TODO: there is probably a better place for this
 
     public function getView()
     {
@@ -21,7 +21,10 @@ class SearchController extends BaseController
     {
         $disease = $request->get('disease');
         $city = $request->get('city');
-        $treatments = Treatment::search($disease, $city)->paginate(10);
+        $treatments = Treatment::search($disease, $city)
+            ->orderBy('treatmentdetails.Year', 'desc')
+            ->groupBy('drgdefinition.Name')
+            ->paginate(self::PAGE_SIZE);
 
         return view('disease-list', [
             'treatments' => $treatments,

@@ -14,6 +14,7 @@
                         <th scope="col" class="align-middle">Hospital</th>
                         <th scope="col" class="align-middle">City</th>
                         <th scope="col" class="align-middle">Average Charges</th>
+                        <th scope="col" class="align-middle">Year</th>
                     </tr>
                     <tbody>
                     @for($i = 0; $i < count($treatments); $i++)
@@ -22,6 +23,7 @@
                             <td>{{ $treatments[$i]->HospitalName }}</td>
                             <td>{{ $treatments[$i]->City }}</td>
                             <td>@parseMoney($treatments[$i]->AverageCoveredCharges)</td>
+                            <td>{{ $treatments[$i]->Year }}</td>
                         </tr>
                     @endfor
                     </tbody>
