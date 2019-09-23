@@ -1,12 +1,11 @@
 <div class="absolute">
+    <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-7 col-lg-5 my-auto mx-auto">
-                <p>*the icon colour needs to be fixed (figure out how to add pic from storage)</p>
                 <p>*the navbar doesn't work (google laravel breadcrumbs)</p>
                     <div class="card card-center my-5 bg-white" style="border: none; border-radius: 15px;">
                             <div class="card-body">
-                                <!-- add correct colour icon -->
-                                    <h1 class="card-title text-center font-weight-bold text-success" ><img src="https://img.icons8.com/ios-glyphs/50/000000/find-hospital.png" width="50" height="50" class="align-bottom" alt="HealthScanner Icon">HealthScanner</h1>
+                            <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px>HealthScanner</h1>
                                     <hr class="my-4" style="width: 80%;">
                                     {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
                                         <div class="form-group">
@@ -28,5 +27,6 @@
                             </div>
                     </div>
             </div> 
+    </div>
     </div>
 </div>
