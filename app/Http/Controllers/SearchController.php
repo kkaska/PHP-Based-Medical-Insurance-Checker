@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Treatment;
+use App\Models\Disease;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
