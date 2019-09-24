@@ -3,5 +3,5 @@
 @section('content')
 @include ('layouts.partials.header')
 @include ('layouts.partials.search')
-@inclue ('layouts.partials.searchmap')
+@include ('layouts.partials.searchmap')
 @endsection
