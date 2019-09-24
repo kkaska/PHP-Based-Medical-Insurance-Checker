@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Treatment;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 
 class SearchController extends BaseController
@@ -15,6 +16,17 @@ class SearchController extends BaseController
     public function getView()
     {
         return view('search');
+    }
+
+    public function search(Request $request)
+    {
+        session(['lat' => 1]);
+        $url = sprintf('search/list?city=%s&disease=%s',
+            $request->input('city'),
+            $request->input('disease')
+        );
+
+        return redirect($url);
     }
 
     public function list(Request $request)

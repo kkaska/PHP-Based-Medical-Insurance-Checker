@@ -23,6 +23,7 @@ Route::get('hospitals', 'HospitalController@list');
 
 
 Route::get('search', 'SearchController@getView');
+Route::post('search', 'SearchController@search');
 
 Route::get('search/list', 'SearchController@list');
-Route::post('search/list', 'SearchController@list');
+Route::post('search/list', 'SearchController@list');    //Unsure if there's a way to not have this one.
