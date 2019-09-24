@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
@@ -22,6 +21,7 @@
                                         <script type="text/javascript">
                                             var route = "{{ url('autocomplete') }}";
                                                 $('#disease').typeahead({
+                                                    minLength: 4,
                                                     source:  function (term, process) {
                                                     return $.get(route, { term: term }, function (data) {
                                                             console.log(term + " --- " + data);
