@@ -26,7 +26,6 @@ class SearchController extends BaseController
     }
 
     /**
-     * Show the form for creating a new resource.
      * Function to return diseases based upon a user's current search 
      * Could be refactored to speed up (caching?)
      *
@@ -37,7 +36,6 @@ class SearchController extends BaseController
         $query = Disease::select("Name")
                 ->where("Name","LIKE","%{$request->input('query')}%")
                 ->get();
-
 
         $data = array();
         foreach($query as $record) {
