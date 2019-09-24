@@ -27,8 +27,10 @@ class SearchController extends BaseController
 
     /**
      * Show the form for creating a new resource.
+     * Function to return diseases based upon a user's current search 
+     * Could be refactored to speed up (caching?)
      *
-     * @return \Illuminate\Http\Response
+     * @author Finn
      */
     public function autocomplete(Request $request)
     {
@@ -44,4 +46,4 @@ class SearchController extends BaseController
    
        return response()->json($data);
     }
-}
+} 

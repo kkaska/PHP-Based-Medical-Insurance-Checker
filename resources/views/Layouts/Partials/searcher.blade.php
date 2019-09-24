@@ -1,6 +1,5 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-
 <div class="absolute">
         <div class="row">
             <div class="col-sm-12 col-md-7 col-lg-5 my-auto mx-auto">
@@ -13,9 +12,10 @@
                                     <hr class="my-4" style="width: 80%;">
                                     {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
                                         <div class="form-group">
-                                                <input class="typeahead form-control" type="text" id="disease" name="disease" aria-label="Disease" placeholder="Procedure" >
+                                                <input class="typeahead form-control" type="text" id="disease" name="disease" aria-label="Disease" placeholder="Procedure" autocomplete="off">
                                                 <label style="display: none" for="disease">procedure</label>
                                         </div>
+
 
                                         <!-- Script to autocomplete form @author Finn  --->
                                         <script type="text/javascript">
@@ -30,7 +30,7 @@
                                                     }
                                                 });
                                         </script>
-
+                                        
 
                                         <div class="form-group">
                                             <div class="input-group">
