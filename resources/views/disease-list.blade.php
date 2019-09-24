@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<p>This page needs fixed a bit, the cards need to be responsive and the map should probably have a fixed height, but good enough for now</p>
-<p>Map is also completely unconnected -> to do later</p>
-<p> make the table scrollable</p>
-<div class="container">
+@include('layouts.partials.header')
+@include('layouts.partials.search')
+
+<div class="container-fluid mt-3">
     <div class="card-group">
         <div class="card col overflow:auto">
             <div class="card-body">

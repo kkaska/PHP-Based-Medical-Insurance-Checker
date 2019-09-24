@@ -1,10 +1,10 @@
 <div class="absolute">
-    <div class="side">
+    <div class="center-card">
         <div class="row">
             <div class="col-sm-12 col-md-7 col-lg-5 my-auto mx-auto">
                 <div class="card card-center my-5 bg-white" style="border: none; border-radius: 15px;">
                     <div class="card-body">
-                        <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
+                        <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo" class="align-top">HealthScanner</h1>
                         <hr class="my-4" style="width: 80%;">
                         {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
                         <div class="form-group">
@@ -17,12 +17,14 @@
                                 <label style="display: none" for="city">city</label>
                                 <div class="input-group-append">
                                     <!--add accessibility to button-->
-                                    <button class="btn btn-success" type="button">Use your location</button>
+                                    <button id="location" class="btn btn-success" type="button">Use your location</button>
                                 </div>
                             </div>
                         </div>
                         {{ Form::submit('Search', array('class' => 'form-control btn btn-success btn-large btn-block text-uppercase font-weight-bold')) }}
                         {{ Form::close() }}
+
+                            <script src="{{ URL::asset("js/map-test.js") }}"></script>
                     </div>
                 </div>
             </div> 

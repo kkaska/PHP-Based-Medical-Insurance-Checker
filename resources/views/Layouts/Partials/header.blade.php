@@ -3,7 +3,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <nav class="navbar justify-content-start">
-                    <h1 class="navbar-brand mb-0 h1 text-success font-weight-bold"><img src={{ asset('img/icon.png') }} width = 25px height = 25px alt="HealthScanner icon logo">HealthScanner</h1>
+                    <h1 class="navbar-brand mb-0 h1 text-success font-weight-bold"><img src={{ asset('img/icon.png') }} width = 25px height = 25px alt="HealthScanner icon logo" class="align-top">HealthScanner</h1>
                     
                     <ul class="nav nav-pills">
                         <li class="nav-item">
