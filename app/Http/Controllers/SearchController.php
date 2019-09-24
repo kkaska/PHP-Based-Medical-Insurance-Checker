@@ -22,8 +22,6 @@ class SearchController extends BaseController
         $disease = $request->get('disease');
         $city = $request->get('city');
         $treatments = Treatment::search($disease, $city)
-            ->orderBy('treatmentdetails.Year', 'desc')
-            ->groupBy('drgdefinition.Name')
             ->paginate(self::PAGE_SIZE);
 
         return view('disease-list', [

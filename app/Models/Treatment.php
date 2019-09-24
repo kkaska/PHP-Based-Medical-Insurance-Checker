@@ -5,6 +5,7 @@ namespace App\Models;
 
 use App\Http\Controllers\SearchController;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Treatment extends Model
 {
@@ -29,8 +30,11 @@ class Treatment extends Model
                 'hospital.Name as HospitalName',
                 'hospital.City',
                 'treatmentdetails.AverageCoveredCharges',
-                'treatmentdetails.Year'
-            );
+                'treatmentdetails.Year',
+                DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')
+            )
+            ->groupBy('drgdefinition.Name')
+            ->orderBy('AverageCharges');
 
         return $treatments;
     }

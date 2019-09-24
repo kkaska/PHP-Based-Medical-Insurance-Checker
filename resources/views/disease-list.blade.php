@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<p>This page needs fixed a bit, the cards need to be responsive and the map should probably have a fixed height, but good enough for now</p>
-<p>Map is also completely unconnected -> to do later</p>
-<p> make the table scrollable</p>
 <div class="container">
     <div class="card-group">
         <div class="card col overflow:auto">
@@ -14,7 +11,7 @@
                         <th scope="col" class="align-middle">Hospital</th>
                         <th scope="col" class="align-middle">City</th>
                         <th scope="col" class="align-middle">Average Charges</th>
-                        <th scope="col" class="align-middle">Year</th>
+                        <th scope="col" class="align-middle">Distance</th>
                     </tr>
                     <tbody>
                     @for($i = 0; $i < count($treatments); $i++)
@@ -22,8 +19,8 @@
                             <td>{{ $treatments[$i]->DiseaseName }}</td>
                             <td>{{ $treatments[$i]->HospitalName }}</td>
                             <td>{{ $treatments[$i]->City }}</td>
-                            <td>@parseMoney($treatments[$i]->AverageCoveredCharges)</td>
-                            <td>{{ $treatments[$i]->Year }}</td>
+                            <td>@parseMoney($treatments[$i]->AverageCharges)</td>
+                            <td></td>
                         </tr>
                     @endfor
                     </tbody>
@@ -33,7 +30,6 @@
             </div>
             </div>
         </div>
-
         <div class="card col-lg-5">
             <div class="card-body">
                 <!--Google map-->
