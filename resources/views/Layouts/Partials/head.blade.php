@@ -6,3 +6,4 @@
 <title>HealthScanner</title>
 
 <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/google-maps.css') }}">
