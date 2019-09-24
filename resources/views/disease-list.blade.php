@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid mt-3">
     <div class="card-group">
         <div class="card col overflow:auto">
             <div class="card-body">
@@ -35,6 +35,7 @@
                 <!-- Google Maps -->
                 <div id="map"></div>
                 <script src="{{ URL::asset('js/maps-list.js') }}"></script>
+                <!-- /Google Maps -->
             </div>
         </div>
     </div>

@@ -29,8 +29,10 @@
   .side {
     top: 0%;
     width: 200%;
-    
+  }
 
+  .center-card{
+    transform: translateY(50%);
   }
 </style>
   <head>
@@ -38,7 +40,7 @@
   </head>
 
   <body class="bg-primary">
-      @include ('layouts.partials.breadcrumbs')
+      @include ('layouts.partials.header')
     <div class="content">
       @yield('content')
     </div>
