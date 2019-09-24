@@ -3,12 +3,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Disease;
+use App\Models\Treatment;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
+
 class SearchController extends BaseController
 {
+    public const PAGE_SIZE = 20;        //TODO: there is probably a better place for this
+
     public function getView()
     {
         return view('search');
@@ -17,11 +20,13 @@ class SearchController extends BaseController
     public function list(Request $request)
     {
         $disease = $request->get('disease');
-        $diseases = Disease::where('Name', 'LIKE', '%' . $disease . '%')->paginate(20);
-
+        $city = $request->get('city');
+        $treatments = Treatment::search($disease, $city)->paginate(10);
 
         return view('disease-list', [
-            'diseases' => $diseases
+            'treatments' => $treatments,
+            'disease' => $disease,
+            'city' => $city
         ]);
     }
 }
