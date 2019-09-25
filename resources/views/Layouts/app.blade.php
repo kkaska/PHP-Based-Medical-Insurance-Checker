@@ -37,6 +37,7 @@
   </head>
 
   <body class="bg-primary">
+    @include('layouts.partials.header')
     <div class="content">
       @yield('content')
     </div>

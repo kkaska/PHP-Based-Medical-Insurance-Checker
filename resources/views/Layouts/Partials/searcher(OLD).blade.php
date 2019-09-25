@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <div class="absolute">
     <div class="center-card">
         <div class="row">
