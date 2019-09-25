@@ -11,7 +11,7 @@
 <p> make the table scrollable</p>
 <div class="container"> --}}
     <div class="card-group">
-        <div class="card col overflow:auto">
+        <div class="card col overflow:auto border-success bg-light">
             <div class="card-body">
                 <table class="table table-hover table-sm">
                     <tr>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="card col-lg-5">
+        <div class="card col-lg-5 border-success bg-light">
             <div class="card-body">
                 <!--Google map-->
                 <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
