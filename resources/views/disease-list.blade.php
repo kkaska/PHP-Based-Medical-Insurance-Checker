@@ -10,12 +10,15 @@
             <div class="card-body">
                 <table class="table table-hover table-sm">
                     <tr>
+
                         <th scope="col" class="align-middle">Treatment</th>
                         <th scope="col" class="align-middle">Hospital</th>
                         <th scope="col" class="align-middle">City</th>
-                        <th scope="col" class="align-middle">Average Charges</th>
+                        <th scope="col" class="align-middle">@sortablelink('AverageCoveredCharges', 'Cost')</th> <!-- Somehow, this is the problem with the sorting -->
+
                     </tr>
                     <tbody>
+
                     @for($i = 0; $i < count($treatments); $i++)
                         <tr scope="row">
                             <td>{{ $treatments[$i]->DiseaseName }}</td>
@@ -24,11 +27,11 @@
                             <td>@parseMoney($treatments[$i]->AverageCoveredCharges)</td>
                         </tr>
                     @endfor
+
                     </tbody>
                 </table>
-            <div class="row justify-content-center">
-                {{ $treatments->appends(request()->input())->links() }}
-            </div>
+
+                {!! $treatments->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
 
