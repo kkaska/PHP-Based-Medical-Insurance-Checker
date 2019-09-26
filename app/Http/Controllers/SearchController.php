@@ -36,8 +36,8 @@ class SearchController extends BaseController
         $disease = $request->get('disease');
         $city = $request->get('city');
 
-        $userLatitude = session()->has('user-latitude') ? session()->get('user-latitude') : -34.397;
-        $userLongitude = session()->has('user-longitude') ? session()->get('user-longitude') : 150.644;
+        $userLatitude = session()->has('user-latitude') ? session()->get('user-latitude') : 34.136126;
+        $userLongitude = session()->has('user-longitude') ? session()->get('user-longitude') : -118.5283297;
 
         $treatments = Treatment::search($disease, $city)->sortable(['AverageCoveredCharges'])->paginate(10);
 
