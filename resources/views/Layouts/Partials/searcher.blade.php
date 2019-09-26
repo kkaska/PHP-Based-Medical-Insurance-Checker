@@ -14,7 +14,7 @@
                                     <hr class="my-4" style="width: 80%;">
                                     {{ Form::open(array('url' => 'search', 'method' => 'post')) }}
                                         <div class="form-group">
-                                                <input class="typeahead form-control" type="text" id="disease" name="disease" aria-label="Disease" placeholder="Procedure" autocomplete="off">
+                                                <input class="typeahead form-control form-control-lg" type="text" id="disease" name="disease" aria-label="Disease" placeholder="Procedure" autocomplete="off">
                                                 <label style="display: none" for="disease">procedure</label>
                                         </div>
 
