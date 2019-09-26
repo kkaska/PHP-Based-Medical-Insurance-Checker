@@ -34,6 +34,23 @@
             <div class="card-body">
                 <!-- Google Maps -->
                 <div id="map"></div>
+                <script>
+                    function initMap() {
+                        let position = {lat: {{ $userLatitude }}, lng: {{ $userLongitude }}};   //Get Lat and Lng from laravel's session
+
+                        let map = new google.maps.Map(document.getElementById('map'), {
+                            center: position,
+                            zoom: 8
+                        });
+
+                        let marker = new google.maps.Marker({
+                            position: position,
+                            map: map
+                        })
+
+
+                    }
+                </script>
                 <script src="{{ URL::asset('js/maps-list.js') }}"></script>
                 <!-- /Google Maps -->
             </div>

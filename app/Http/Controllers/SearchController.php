@@ -20,7 +20,8 @@ class SearchController extends BaseController
 
     public function search(Request $request)
     {
-        session(['lat' => 1]);
+        session(['user-latitude' => $request->input('user-latitude')]);
+        session(['user-longitude' => $request->input('user-longitude')]);
         $url = sprintf('search/list?city=%s&disease=%s',
             $request->input('city'),
             $request->input('disease')
@@ -35,11 +36,15 @@ class SearchController extends BaseController
         $city = $request->get('city');
         $treatments = Treatment::search($disease, $city)
             ->paginate(self::PAGE_SIZE);
+        $userLatitude = session()->has('user-latitude') ? session()->get('user-latitude') : -34.397;
+        $userLongitude = session()->has('user-longitude') ? session()->get('user-longitude') : 150.644;
 
         return view('disease-list', [
             'treatments' => $treatments,
             'disease' => $disease,
-            'city' => $city
+            'city' => $city,
+            'userLatitude' => $userLatitude,
+            'userLongitude' => $userLongitude
         ]);
     }
 }

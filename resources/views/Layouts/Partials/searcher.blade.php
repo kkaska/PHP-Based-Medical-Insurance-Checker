@@ -23,6 +23,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="user-latitude" name="user-latitude">
+                        <input type="hidden" id="user-longitude" name="user-longitude">
                         {{ Form::submit('Search', array('class' => 'form-control btn btn-success btn-large btn-block text-uppercase font-weight-bold')) }}
                         {{ Form::close() }}
                     </div>
