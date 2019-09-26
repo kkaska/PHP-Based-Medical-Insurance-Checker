@@ -5,11 +5,14 @@ namespace App\Models;
 
 use App\Http\Controllers\SearchController;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Treatment extends Model
 {
+    use Sortable;
     protected $table = 'treatmentdetails';
     public $timestamps = false;
+    public $sortable = ['AverageCoveredCharges'];
 
     /*
      * Joins the Hospital, Treatment and dRGDefinition tables on Ids and returns a query as a result.
