@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5c064b34ef3aaaccc0124e4b14867fb",
+    "content-hash": "0f8e3941bcd9a5012a288e4d028ecb83",
     "packages": [
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
@@ -572,6 +572,95 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "jasonbrady/jquery-typeahead",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jasonbrady/jquery-typeahead.git",
+                "reference": "90f837378322bca736fd9508d7325119b53efa46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jasonbrady/jquery-typeahead/zipball/90f837378322bca736fd9508d7325119b53efa46",
+                "reference": "90f837378322bca736fd9508d7325119b53efa46",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery plugin that provides Typeahead (autocomplete) Search preview from Json object(s) via same domain Ajax request or cross domain Jsonp and offers data compression inside Local Storage. The plugin is built with a lot of options and callbacks to allow customization.",
+            "homepage": "http://www.runningcoder.org/jquerytypeahead/",
+            "keywords": [
+                "JSONP",
+                "ajax",
+                "autocomplete",
+                "input",
+                "json",
+                "search",
+                "typeahead"
+            ],
+            "time": "2017-09-20T16:29:04+00:00"
+        },
+        {
+            "name": "kyslik/column-sortable",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kyslik/column-sortable.git",
+                "reference": "7211a9a305219b5b710f7cb1f604ad6bdd1b1835"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/7211a9a305219b5b710f7cb1f604ad6bdd1b1835",
+                "reference": "7211a9a305219b5b710f7cb1f604ad6bdd1b1835",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.8.*|6.0.*",
+                "illuminate/support": "5.8.*|6.0.*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.8.*|4.0.*",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kyslik\\ColumnSortable\\ColumnSortableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kyslik\\ColumnSortable\\": "src/ColumnSortable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kiesel",
+                    "email": "martin.kiesel@gmail.com",
+                    "role": "Developer and maintainer"
+                }
+            ],
+            "description": "Package for handling column sorting in Laravel 5.x",
+            "keywords": [
+                "column",
+                "laravel",
+                "sort",
+                "sortable",
+                "sorting"
+            ],
+            "time": "2019-09-05T17:07:25+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v6.0.3",
             "source": {
@@ -838,16 +927,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "4aecb0bb71013d1218c70ee02b011944840dcb60"
+                "reference": "2f181aba73390eec13d398bf57877b1cc3bc2588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/4aecb0bb71013d1218c70ee02b011944840dcb60",
-                "reference": "4aecb0bb71013d1218c70ee02b011944840dcb60",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/2f181aba73390eec13d398bf57877b1cc3bc2588",
+                "reference": "2f181aba73390eec13d398bf57877b1cc3bc2588",
                 "shasum": ""
             },
             "require": {
@@ -902,30 +991,30 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2019-09-05T12:33:18+00:00"
+            "time": "2019-09-23T06:16:50+00:00"
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.46",
+            "version": "1.0.55",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
+                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
-                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/33c91155537c6dc899eacdc54a13ac6303f156e6",
+                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6",
                 "shasum": ""
             },
             "require": {
+                "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
-                "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
                 "phpunit/phpunit": "^5.7.10"
             },
@@ -986,7 +1075,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-08-22T07:45:22+00:00"
+            "time": "2019-08-24T11:17:19+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5060,7 +5149,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "jasonbrady/jquery-typeahead": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

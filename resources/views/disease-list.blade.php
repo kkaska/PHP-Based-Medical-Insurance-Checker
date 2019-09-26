@@ -2,18 +2,21 @@
 
 @section('content')
 <div class="container-fluid mt-3">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" integrity="sha384-+GtXzQ3eTCAK6MNrGmy3TcOujpxp7MnMAi6nvlvbZlETUcZeCk7TDwvlCw9RiV6R" crossorigin="anonymous"></script>
     <div class="card-group">
         <div class="card col overflow:auto">
             <div class="card-body">
                 <table class="table table-hover table-sm">
                     <tr>
+
                         <th scope="col" class="align-middle">Treatment</th>
                         <th scope="col" class="align-middle">Hospital</th>
                         <th scope="col" class="align-middle">City</th>
-                        <th scope="col" class="align-middle">Average Charges</th>
+                        <th scope="col" class="align-middle">@sortablelink('AverageCharges', 'Cost')</th>
                         <th scope="col" class="align-middle">Distance</th>
                     </tr>
                     <tbody>
+
                     @for($i = 0; $i < count($treatments); $i++)
                         <tr scope="row">
                             <td>{{ $treatments[$i]->DiseaseName }}</td>
@@ -23,11 +26,11 @@
                             <td></td>
                         </tr>
                     @endfor
+
                     </tbody>
                 </table>
-            <div class="row justify-content-center">
-                {{ $treatments->appends(request()->input())->links() }}
-            </div>
+
+                {!! $treatments->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
         <div class="card col-lg-5">
