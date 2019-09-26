@@ -35,7 +35,7 @@ class Treatment extends Model
                 'treatmentdetails.Year',
                 DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')
             )
-            ->groupBy('drgdefinition.Name')
+            ->groupBy('hospital.Name')
             ->orderBy('AverageCharges');
 
         return $treatments;
