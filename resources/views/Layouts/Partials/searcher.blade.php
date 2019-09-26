@@ -1,5 +1,7 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" integrity="sha384-+GtXzQ3eTCAK6MNrGmy3TcOujpxp7MnMAi6nvlvbZlETUcZeCk7TDwvlCw9RiV6R" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js" integrity="sha384-HROCV4TFvq4sMXGTbCGk504wpRgZibLtjdZELybVsTEs8srtNMtg0RJOiNNisZgB" crossorigin="anonymous"></script>
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <div class="absolute">
     <div class="side">
         <div class="row">
@@ -37,7 +39,7 @@
 <!-- Script to autocomplete form @author Finn  --->
                                         <script type="text/javascript">
                                             var route = "{{ url('autocomplete') }}";
-                                                $('#disease').typeahead({
+                                                $('#disease').autocomplete({
                                                     minLength: 4,
                                                     source:  function (term, process) {
                                                     return $.get(route, { term: term }, function (data) {
