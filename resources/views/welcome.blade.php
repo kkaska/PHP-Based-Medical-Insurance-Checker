@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
-    @include ('layouts.partials.searcher')
+@include ('layouts.partials.search')
 @endsection
