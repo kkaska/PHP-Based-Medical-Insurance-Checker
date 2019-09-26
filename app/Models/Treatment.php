@@ -12,7 +12,7 @@ class Treatment extends Model
     use Sortable;
     protected $table = 'treatmentdetails';
     public $timestamps = false;
-    public $sortable = ['treatmentdetails.AverageCoveredCharges'];
+    public $sortable = ['AverageCoveredCharges'];
 
     /*
      * Joins the Hospital, Treatment and dRGDefinition tables on Ids and returns a query as a result.

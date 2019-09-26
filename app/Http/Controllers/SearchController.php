@@ -23,7 +23,7 @@ class SearchController extends BaseController
         // Tested this, this code is not the problem with sortable -F
         $disease = $request->get('disease');
         $city = $request->get('city');
-        $treatments = Treatment::search($disease, $city)->sortable()->paginate(10);
+        $treatments = Treatment::search($disease, $city)->sortable(['AverageCoveredCharges'])->paginate(10);
 
         return view('disease-list', [
             'treatments' => $treatments,

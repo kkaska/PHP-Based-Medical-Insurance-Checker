@@ -14,7 +14,7 @@
                         <th scope="col" class="align-middle">Treatment</th>
                         <th scope="col" class="align-middle">Hospital</th>
                         <th scope="col" class="align-middle">City</th>
-                        <th scope="col" class="align-middle">@sortablelink('AverageCoveredCharges', 'Cost')</th> <!-- Somehow, this is the problem with the sorting -->
+                        <th scope="col" class="align-middle">@sortablelink('AverageCoveredCharges', 'Cost')</th> 
 
                     </tr>
                     <tbody>
