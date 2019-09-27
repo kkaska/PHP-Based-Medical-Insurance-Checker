@@ -3,8 +3,6 @@
 @section('content')
 @include('layouts.partials.search')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" integrity="sha384-+GtXzQ3eTCAK6MNrGmy3TcOujpxp7MnMAi6nvlvbZlETUcZeCk7TDwvlCw9RiV6R" crossorigin="anonymous"></script>
-
 <div class="container-fluid mt-3">
 {{-- <p>This page needs fixed a bit, the cards need to be responsive and the map should probably have a fixed height, but good enough for now</p>
 <p>Map is also completely unconnected -> to do later</p>
