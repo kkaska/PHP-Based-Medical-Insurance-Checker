@@ -20,7 +20,6 @@ class SearchController extends BaseController
 
     public function list(Request $request)
     {
-        // Tested this, this code is not the problem with sortable -F
         $disease = $request->get('disease');
         $city = $request->get('city');
         $treatments = Treatment::search($disease, $city)->sortable(['AverageCoveredCharges'])->paginate(10);
@@ -40,17 +39,10 @@ class SearchController extends BaseController
      */
     public function autocomplete(Request $request)
     {
-        //Retreive relevant diseases from what the user has typed
-        $query = Disease::select("Name")
-                ->where("Name","LIKE","%{$request->input('query')}%")
-                ->get();
-
-        // Convert the model data into an array of strings
-        $data = array();
-        foreach($query as $record) {
-            $data[] = $record->Name;
-        }
-   
-       return response()->json($data);
+        $search = $request->get('term');
+      
+        $result = Disease::where('name', 'LIKE', '%'. $search. '%')->get();
+ 
+        return response()->json($result);
     }
 } 

@@ -1,5 +1,7 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" integrity="sha384-+GtXzQ3eTCAK6MNrGmy3TcOujpxp7MnMAi6nvlvbZlETUcZeCk7TDwvlCw9RiV6R" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js" integrity="sha384-HROCV4TFvq4sMXGTbCGk504wpRgZibLtjdZELybVsTEs8srtNMtg0RJOiNNisZgB" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <div class="container-fluid mt-3">
     <div class="row justify-content-center">
         <div class="col-xl-12">
@@ -38,14 +40,27 @@
 
 <!-- Script to autocomplete form @author Finn  --->
 <script type="text/javascript">
-    var route = "{{ url('autocomplete') }}";
-    $('#disease').typeahead({
-        minLength: 4,
-        source:  function (term, process) {
-            return $.get(route, { term: term }, function (data) {
-                console.log(term + " --- " + data);
-                return process(data);
+    $(document).ready(function() {
+        $( "#disease" ).autocomplete({
+                                             
+            source: function(request, response) {
+             $.ajax({
+             url: "{{url('autocomplete')}}",
+            data: {
+                term : request.term
+            },
+            dataType: "json",
+            success: function(data){
+                var resp = $.map(data,function(obj){
+                    console.log(request.term, obj.Name);
+                    return obj.Name;
+            }); 
+                                             
+                response(resp);
+            }
             });
-        }
-    });
-</script>
+            },
+        minLength: 4
+        });
+     });
+ </script>
