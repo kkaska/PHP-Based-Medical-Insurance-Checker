@@ -43,7 +43,7 @@
                 <!-- Google Maps -->
                 <div id="map"></div>
                 <script>
-                    var position = {lat: {{ $userLatitude }}, lng: {{ $userLongitude }}};   //Get Lat and Lng from laravel's session
+                    var position = {lat: {{ json_encode($userLatitude) }}, lng: {{ json_encode($userLongitude) }}};   //Get Lat and Lng from laravel's session
                 </script>
                 <script src="{{ URL::asset('js/maps-list.js') }}"></script>
             </div>

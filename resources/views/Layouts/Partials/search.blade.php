@@ -9,7 +9,7 @@
                 <div class="card-body text-center">
                     <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
                     <hr class="my-4 w-50">
-                    {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
+                    {{ Form::open(array('url' => 'search', 'method' => 'post')) }}
                     <div class="form-row justify-content-center">
                         <div class="col-xl-3">
                             <div class="form-group">
@@ -29,6 +29,8 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" id="user-latitude" name="user-latitude">
+                    <input type="hidden" id="user-longitude" name="user-longitude">
                     {{ Form::submit('Search', array('class' => 'btn btn-success btn-lg text-uppercase font-weight-bold')) }}
                     {{ Form::close() }}
                     
@@ -61,5 +63,14 @@
             },
         minLength: 4
         });
-     });
+
+        //Autocomplete the search form
+        let searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('disease')) {
+            $("#disease").val(searchParams.get('disease'));
+        }
+        if (searchParams.has('city')) {
+            $("#city").val(searchParams.get('city'));
+        }
+    });
  </script>
