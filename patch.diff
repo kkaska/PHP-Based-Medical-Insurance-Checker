@@ -1,0 +1,393 @@
+From 85151865f9a722b33e3acbfb62a50068b9878e00 Mon Sep 17 00:00:00 2001
+From: kkaska <kkaskasoli@gmail.com>
+Date: Tue, 24 Sep 2019 12:31:45 +0100
+Subject: [PATCH] added user location fetching
+
+---
+ .../0d0dfa550b3655866a33187db5002f72.json.gz  | Bin 0 -> 156 bytes
+ .../3bd59889be22c6da407a4835a2cdb315.json.gz  | Bin 0 -> 962 bytes
+ .../6b3015b8a2d6e1944a185bada265b10e.json.gz  | Bin 0 -> 143 bytes
+ public/js/app.js                              | 141 ++++++++++++++++++
+ public/js/map-test.js                         |  11 ++
+ resources/js/app.js                           |   1 +
+ .../views/Layouts/Partials/footer.blade.php   |   2 +-
+ .../views/Layouts/Partials/head.blade.php     |   3 +-
+ .../views/Layouts/Partials/header.blade.php   |   2 +-
+ .../Layouts/Partials/searcher(OLD).blade.php  |   8 +-
+ .../Layouts/Partials/searchmap.blade.php      |   0
+ resources/views/Layouts/app.blade.php         |   4 +-
+ resources/views/disease-list.blade.php        |   8 +-
+ resources/views/welcome.blade.php             |   2 +-
+ 14 files changed, 170 insertions(+), 12 deletions(-)
+ create mode 100644 node_modules/.cache/babel-loader/0d0dfa550b3655866a33187db5002f72.json.gz
+ create mode 100644 node_modules/.cache/babel-loader/3bd59889be22c6da407a4835a2cdb315.json.gz
+ create mode 100644 node_modules/.cache/babel-loader/6b3015b8a2d6e1944a185bada265b10e.json.gz
+ create mode 100644 public/js/map-test.js
+ delete mode 100644 resources/views/Layouts/Partials/searchmap.blade.php
+
+diff --git a/node_modules/.cache/babel-loader/0d0dfa550b3655866a33187db5002f72.json.gz b/node_modules/.cache/babel-loader/0d0dfa550b3655866a33187db5002f72.json.gz
+new file mode 100644
+index 0000000000000000000000000000000000000000..cc8ead40aa66e04a5ea21c91ad19cfb61e61fcaf
+GIT binary patch
+literal 156
+zcmV;N0Av3jiwFP!000003Qf*I3c@fDh2g8nY|=t(_w7==fw(a)#%2T|$;4zvl+wG4
+zh{f&4d+^VIRbWUOf`y4a!2pHsdMnhJuD>u#m4ex{qf0IwmAZ*z=0r&vLr;u3&~_zb
+zH-GPyYrp?4cR%SKN~S$I@N`8D;^5qlU?F1u)kG5XC<w#6Sg5RJqQfhH3L|?B1j`#i
+K%xt5+0001<7DpTa
+
+literal 0
+HcmV?d00001
+
+diff --git a/node_modules/.cache/babel-loader/3bd59889be22c6da407a4835a2cdb315.json.gz b/node_modules/.cache/babel-loader/3bd59889be22c6da407a4835a2cdb315.json.gz
+new file mode 100644
+index 0000000000000000000000000000000000000000..e587bf2973e714147577c703b6002f7051044c34
+GIT binary patch
+literal 962
+zcmV;z13mm7iwFP!000003WZf|Z`(Kw{wsv<04GJ`d{5C2y&*$)>vp*&!+NNPLYA3Y
+zsVsSVNg4$C??=gY;%(R#<bzF#56R~t=|jS-OJ>STd6{rsVlqp1LX~=#J;5~?{OX0l
+zQ7U!GY?Y3$ay7lU$W5-`0zP9ZB}mOm*!=6!?18BgT!rwL*3LS^n*N}X{#hv4Rf1R0
+z7`+uGTCl!pv~eBWS{wMAZP}6=(KslW#d3hOM&`VUUWCCc)RdF7ZA@0!3|5t}9abm>
+zYPN?0!#%MUgyl4>g^LN=200lyD8$l&Uc+8{1FUJJ;LHiFvKDEYt6Vv%;6QKCQM1rZ
+zgJ#H26D`@srsKyvDRIrbbb0dSYT)%JIdqR5D+7Sd*I<bR2bYt*=<AP1N1)`W`Vo%d
+zaQulDp+5F1w1wN%Y5`IdhEcGVdnTpcS@1Tnfy@fI2Vt$p7!s}P8KmRD$Q?6mi;~pf
+zFB4Q{%kl}7d8cdQixci1D$+s*h3KMC&mofz?alK3EkVAZ3d%94kd?$>tFcxw=Pi?z
+z21yZK^5lVB@}zU(TE7S!YLcst%eK@3mC+FC8s5k{QEb-6wi(xTt<_`tFu89_$8z#n
+zxGMcZXz9a;yIbd)?kN4H@jv3LgB_BZ#JRy|LB1xY9qU}3>uh86<?aX_ZeqSx(|y*r
+zKCwq^yJsC(i>mc%{J`)QfqIxZ$9RRk9Q5CKdqM*%>P8|(S6fs96~_>eGA^}BU5i2j
+zw<v(y(2On7HB&xB8dAMwraQeR0Pbs4F0z=#rd^^$?z9=DH9GdFSdG_t!mU|Pq8E)p
+z*VkeVqi7m`GfuzNC$KtM{quhQF=`Vb=vX;QBu)iNi!CHst(KUfF(IQt-zn{A#duZD
+zpdw-IY&w-~bB9P%D$Gtp(tpIvUnl1R+R+;}z?@e!J+F<n7#2`?q|Ian(R#CZ7dM&p
+zg{4JS#5vHwX*Lvg>q>@(QFJocd?bP*xkFO`GYEyDS?08zq1g9Rn6-feM7(~!bjIoi
+zJgzf`tRBpH;e{;0=z>~>8jQ(_6E$@)7Q@A7&(cq)K#fEjx{bRwx`wnPZGvP<<DGsh
+zdRu+B6{BUcX{YggGooG7?%hS;(IFm&->D!pGwA%&%hT}-?q}ii!HMh))i(R^?%`?i
+zX?Z)pf4W&Lp5D*@J74C~w>ZCWcysq@xtiafooH6fzM)kx17|!&`*D1gTqZSZ`VVF3
+k^O8B1%nrxP#1hpUSNkS>Jn3WOB__xJ0Z2mu8CeGa0A_OElK=n!
+
+literal 0
+HcmV?d00001
+
+diff --git a/node_modules/.cache/babel-loader/6b3015b8a2d6e1944a185bada265b10e.json.gz b/node_modules/.cache/babel-loader/6b3015b8a2d6e1944a185bada265b10e.json.gz
+new file mode 100644
+index 0000000000000000000000000000000000000000..a5be8d26be3b380dfce0b4219f7b79b472b7746f
+GIT binary patch
+literal 143
+zcmV;A0C4{wiwFP!000003SEvd3d1lAMXyq{I0lpK&e$uIPFYl2L&3IOTPi6bcP|}M
+zO4rAG{J#Nq0bevF2Z1Ajhei**HyX@1-I%3I!)oljl%-si#=yC9p(2B!6?08=K8SIr
+xpZF{G>0cb5O2*n59AvD=ekQ?)g5bB^L1%4&F0cCelsRf5*x%}_fv>Ot007XRKUe?&
+
+literal 0
+HcmV?d00001
+
+diff --git a/public/js/app.js b/public/js/app.js
+index 1a2a9708..c0ff8f14 100644
+--- a/public/js/app.js
++++ b/public/js/app.js
+@@ -36833,6 +36833,113 @@ process.chdir = function (dir) {
+ process.umask = function() { return 0; };
+ 
+ 
++/***/ }),
++
++/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
++/*!********************************************************************!*\
++  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
++  \********************************************************************/
++/*! exports provided: default */
++/***/ (function(module, __webpack_exports__, __webpack_require__) {
++
++"use strict";
++__webpack_require__.r(__webpack_exports__);
++/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
++/* globals __VUE_SSR_CONTEXT__ */
++
++// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
++// This module is a runtime utility for cleaner component module output and will
++// be included in the final webpack user bundle.
++
++function normalizeComponent (
++  scriptExports,
++  render,
++  staticRenderFns,
++  functionalTemplate,
++  injectStyles,
++  scopeId,
++  moduleIdentifier, /* server only */
++  shadowMode /* vue-cli only */
++) {
++  // Vue.extend constructor export interop
++  var options = typeof scriptExports === 'function'
++    ? scriptExports.options
++    : scriptExports
++
++  // render functions
++  if (render) {
++    options.render = render
++    options.staticRenderFns = staticRenderFns
++    options._compiled = true
++  }
++
++  // functional template
++  if (functionalTemplate) {
++    options.functional = true
++  }
++
++  // scopedId
++  if (scopeId) {
++    options._scopeId = 'data-v-' + scopeId
++  }
++
++  var hook
++  if (moduleIdentifier) { // server build
++    hook = function (context) {
++      // 2.3 injection
++      context =
++        context || // cached call
++        (this.$vnode && this.$vnode.ssrContext) || // stateful
++        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
++      // 2.2 with runInNewContext: true
++      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
++        context = __VUE_SSR_CONTEXT__
++      }
++      // inject component styles
++      if (injectStyles) {
++        injectStyles.call(this, context)
++      }
++      // register component module identifier for async chunk inferrence
++      if (context && context._registeredComponents) {
++        context._registeredComponents.add(moduleIdentifier)
++      }
++    }
++    // used by ssr in case component is cached and beforeCreate
++    // never gets called
++    options._ssrRegister = hook
++  } else if (injectStyles) {
++    hook = shadowMode
++      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
++      : injectStyles
++  }
++
++  if (hook) {
++    if (options.functional) {
++      // for template-only hot-reload because in that case the render fn doesn't
++      // go through the normalizer
++      options._injectStyles = hook
++      // register for functioal component in vue file
++      var originalRender = options.render
++      options.render = function renderWithStyleInjection (h, context) {
++        hook.call(context)
++        return originalRender(h, context)
++      }
++    } else {
++      // inject component registration as beforeCreate hook
++      var existing = options.beforeCreate
++      options.beforeCreate = existing
++        ? [].concat(existing, hook)
++        : [hook]
++    }
++  }
++
++  return {
++    exports: scriptExports,
++    options: options
++  }
++}
++
++
+ /***/ }),
+ 
+ /***/ "./node_modules/webpack/buildin/global.js":
+@@ -36908,6 +37015,8 @@ module.exports = function(module) {
+ 
+ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+ 
++Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
++
+ /***/ }),
+ 
+ /***/ "./resources/js/bootstrap.js":
+@@ -36968,6 +37077,38 @@ if (token) {
+ 
+ /***/ }),
+ 
++/***/ "./resources/js/components/ExampleComponent.vue":
++/*!******************************************************!*\
++  !*** ./resources/js/components/ExampleComponent.vue ***!
++  \******************************************************/
++/*! exports provided: default */
++/***/ (function(module, __webpack_exports__, __webpack_require__) {
++
++"use strict";
++__webpack_require__.r(__webpack_exports__);
++/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
++var render, staticRenderFns
++var script = {}
++
++
++/* normalize component */
++
++var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
++  script,
++  render,
++  staticRenderFns,
++  false,
++  null,
++  null,
++  null
++  
++)
++
++component.options.__file = "resources/js/components/ExampleComponent.vue"
++/* harmony default export */ __webpack_exports__["default"] = (component.exports);
++
++/***/ }),
++
+ /***/ "./resources/sass/app.scss":
+ /*!*********************************!*\
+   !*** ./resources/sass/app.scss ***!
+diff --git a/public/js/map-test.js b/public/js/map-test.js
+new file mode 100644
+index 00000000..f7509e39
+--- /dev/null
++++ b/public/js/map-test.js
+@@ -0,0 +1,11 @@
++$('#location').click(function(){
++    navigator.geolocation.getCurrentPosition(function(position) {
++        store(position.coords.latitude, position.coords.longitude);
++      });
++    
++});
++
++function store (lat, lng) {
++    // make this store variables to pass to results page
++ alert(lat + ', ' +lng);
++}
+\ No newline at end of file
+diff --git a/resources/js/app.js b/resources/js/app.js
+index 40c55f65..e74d43cd 100644
+--- a/resources/js/app.js
++++ b/resources/js/app.js
+@@ -1 +1,2 @@
+ require('./bootstrap');
++
+diff --git a/resources/views/Layouts/Partials/footer.blade.php b/resources/views/Layouts/Partials/footer.blade.php
+index 6794d1ca..04b155cd 100644
+--- a/resources/views/Layouts/Partials/footer.blade.php
++++ b/resources/views/Layouts/Partials/footer.blade.php
+@@ -1,4 +1,4 @@
+ {{--Place JS files in here, so that pages load faster--}}
+-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
++
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+\ No newline at end of file
+diff --git a/resources/views/Layouts/Partials/head.blade.php b/resources/views/Layouts/Partials/head.blade.php
+index e5968026..9e1b1dc8 100644
+--- a/resources/views/Layouts/Partials/head.blade.php
++++ b/resources/views/Layouts/Partials/head.blade.php
+@@ -5,4 +5,5 @@
+ 
+ <title>HealthScanner</title>
+ 
+-<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+\ No newline at end of file
++<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
++<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+\ No newline at end of file
+diff --git a/resources/views/Layouts/Partials/header.blade.php b/resources/views/Layouts/Partials/header.blade.php
+index b21f3ed4..48113510 100644
+--- a/resources/views/Layouts/Partials/header.blade.php
++++ b/resources/views/Layouts/Partials/header.blade.php
+@@ -3,7 +3,7 @@
+         <div class="col-xl-12">
+             <div class="card">
+                 <nav class="navbar justify-content-start">
+-                    <h1 class="navbar-brand mb-0 h1 text-success font-weight-bold"><img src={{ asset('img/icon.png') }} width = 25px height = 25px alt="HealthScanner icon logo">HealthScanner</h1>
++                    <h1 class="navbar-brand mb-0 h1 text-success font-weight-bold"><img src={{ asset('img/icon.png') }} width = 25px height = 25px alt="HealthScanner icon logo" class="align-top">HealthScanner</h1>
+                     
+                     <ul class="nav nav-pills">
+                         <li class="nav-item">
+diff --git a/resources/views/Layouts/Partials/searcher(OLD).blade.php b/resources/views/Layouts/Partials/searcher(OLD).blade.php
+index d5ae2199..1fcf1c45 100644
+--- a/resources/views/Layouts/Partials/searcher(OLD).blade.php
++++ b/resources/views/Layouts/Partials/searcher(OLD).blade.php
+@@ -1,10 +1,10 @@
+ <div class="absolute">
+-    <div class="side">
++    <div class="center-card">
+         <div class="row">
+             <div class="col-sm-12 col-md-7 col-lg-5 my-auto mx-auto">
+                 <div class="card card-center my-5 bg-white" style="border: none; border-radius: 15px;">
+                     <div class="card-body">
+-                        <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
++                        <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo" class="align-top">HealthScanner</h1>
+                         <hr class="my-4" style="width: 80%;">
+                         {{ Form::open(array('url' => 'search/list', 'method' => 'get')) }}
+                         <div class="form-group">
+@@ -17,12 +17,14 @@
+                                 <label style="display: none" for="city">city</label>
+                                 <div class="input-group-append">
+                                     <!--add accessibility to button-->
+-                                    <button class="btn btn-success" type="button">Use your location</button>
++                                    <button id="location" class="btn btn-success" type="button">Use your location</button>
+                                 </div>
+                             </div>
+                         </div>
+                         {{ Form::submit('Search', array('class' => 'form-control btn btn-success btn-large btn-block text-uppercase font-weight-bold')) }}
+                         {{ Form::close() }}
++
++                            <script src="{{ URL::asset("js/map-test.js") }}"></script>
+                     </div>
+                 </div>
+             </div> 
+diff --git a/resources/views/Layouts/Partials/searchmap.blade.php b/resources/views/Layouts/Partials/searchmap.blade.php
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/resources/views/Layouts/app.blade.php b/resources/views/Layouts/app.blade.php
+index b282ddbf..49242eb4 100644
+--- a/resources/views/Layouts/app.blade.php
++++ b/resources/views/Layouts/app.blade.php
+@@ -28,7 +28,9 @@
+     width:100%;
+     position:absolute;
+   }
+-  
++  .center-card{
++    transform: translateY(50%);
++  }
+ </style>
+   <head>
+       @include('layouts.partials.head')
+diff --git a/resources/views/disease-list.blade.php b/resources/views/disease-list.blade.php
+index 905d5c7f..502a41c9 100644
+--- a/resources/views/disease-list.blade.php
++++ b/resources/views/disease-list.blade.php
+@@ -1,10 +1,10 @@
+ @extends('layouts.app')
+ 
+ @section('content')
+-<p>This page needs fixed a bit, the cards need to be responsive and the map should probably have a fixed height, but good enough for now</p>
+-<p>Map is also completely unconnected -> to do later</p>
+-<p> make the table scrollable</p>
+-<div class="container">
++@include('layouts.partials.header')
++@include('layouts.partials.search')
++
++<div class="container-fluid mt-3">
+     <div class="card-group">
+         <div class="card col overflow:auto">
+             <div class="card-body">
+diff --git a/resources/views/welcome.blade.php b/resources/views/welcome.blade.php
+index f1d551e7..e160928f 100644
+--- a/resources/views/welcome.blade.php
++++ b/resources/views/welcome.blade.php
+@@ -3,5 +3,5 @@
+ @section('content')
+ @include ('layouts.partials.header')
+ @include ('layouts.partials.search')
+-@include ('layouts.partials.searchmap')
++
+ @endsection
+\ No newline at end of file
+-- 
+2.23.0.windows.1
+

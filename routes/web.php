@@ -19,11 +19,11 @@ Route::get('home', function () {
     return view('welcome');
 });
 Route::get('hospitals', 'HospitalController@list');
+Route::post('search', 'SearchController@search');
 
-
+Route::get('search/list', 'SearchController@list');
 Route::get('search', 'SearchController@getView')->name('search');
 
 Route::get('search/list', 'SearchController@list');
-Route::post('search/list', 'SearchController@list');
 
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');

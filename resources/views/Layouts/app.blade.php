@@ -28,6 +28,7 @@
     width:100%;
     position:absolute;
   }
+
   .center-card{
     transform: translateY(50%);
   }
