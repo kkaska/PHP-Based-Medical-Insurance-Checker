@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.partials.search')
+
 <div class="container-fluid mt-3">
+{{-- <p>This page needs fixed a bit, the cards need to be responsive and the map should probably have a fixed height, but good enough for now</p>
+<p>Map is also completely unconnected -> to do later</p>
+<p> make the table scrollable</p>
+<div class="container"> --}}
     <div class="card-group">
-        <div class="card col overflow:auto">
+        <div class="card col overflow:auto border-success bg-light">
             <div class="card-body">
                 <table class="table table-hover">
                     <tr>
@@ -32,7 +38,7 @@
                 {!! $treatments->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
-        <div class="card col-lg-5">
+        <div class="card col-lg-5 border-success bg-light">
             <div class="card-body">
                 <!-- Google Maps -->
                 <div id="map"></div>

@@ -8,10 +8,12 @@
   font-size: 35px;
   color: white;
   }
-  .absolute {
-    position: absolute;
-    top:25%;
-    width: 50%;
+  html, body {
+    height: 100%;
+  }
+  body{
+    align-items: center;
+    justify-content: center;
   }
   .map-container{
     overflow:hidden;
@@ -26,10 +28,6 @@
     width:100%;
     position:absolute;
   }
-  .side {
-    top: 0%;
-    width: 200%;
-  }
 
   .center-card{
     transform: translateY(50%);
@@ -40,7 +38,7 @@
   </head>
 
   <body class="bg-primary">
-      @include ('layouts.partials.header')
+    @include('layouts.partials.header')
     <div class="content">
       @yield('content')
     </div>
