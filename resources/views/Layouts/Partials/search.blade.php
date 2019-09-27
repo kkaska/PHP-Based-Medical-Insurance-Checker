@@ -61,5 +61,14 @@
             },
         minLength: 4
         });
-     });
+
+        //Autocomplete the search form
+        let searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('disease')) {
+            $("#disease").val(searchParams.get('disease'));
+        }
+        if (searchParams.has('city')) {
+            $("#city").val(searchParams.get('city'));
+        }
+    });
  </script>
