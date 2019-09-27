@@ -436,6 +436,7 @@ class ComposerStaticInitcc587bbe3081698f6e92a00c7b6d66fa
     );
 
     public static $classMap = array (
+        'App\\Charts\\Years' => __DIR__ . '/../..' . '/app/Charts/Years.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Hospital' => __DIR__ . '/../..' . '/app/Models/Hospital.php',
@@ -447,6 +448,7 @@ class ComposerStaticInitcc587bbe3081698f6e92a00c7b6d66fa
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HospitalController' => __DIR__ . '/../..' . '/app/Http/Controllers/HospitalController.php',
         'App\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/SearchController.php',
+        'App\\Http\\Controllers\\YearsController' => __DIR__ . '/../..' . '/app/Http/Controllers/YearsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',

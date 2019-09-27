@@ -10,7 +10,7 @@
 <div class="container"> --}}
     <div class="card-group">
         <div class="card col overflow:auto border-success bg-light">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table table-hover">
                     <tr>
 

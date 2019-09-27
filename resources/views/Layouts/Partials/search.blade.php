@@ -23,7 +23,7 @@
                                     <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="City" required>
                                     <label style="display: none" for="city">city</label>
                                     <div class="input-group-append">
-                                        <button class="btn btn-success" type="button">Find</button>
+                                        <button id="location" class="btn btn-success" type="button">Find</button>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
         </div>
     </div>
 </div>
-
+<script src="{{ URL::asset("js/map-search.js") }}"></script>
 <!-- Script to autocomplete form @author Finn  --->
 <script type="text/javascript">
     $(document).ready(function() {
@@ -52,7 +52,6 @@
             dataType: "json",
             success: function(data){
                 var resp = $.map(data,function(obj){
-                    console.log(request.term, obj.Name);
                     return obj.Name;
             }); 
                                              

@@ -7,7 +7,6 @@ function initMap() {
         zoom: 9
     });
     $('.hospital-name').each(function () {
-        console.log($(this).text());
         let geocoder = new google.maps.Geocoder;
         geocoder.geocode({'address' : $(this).text()}, function (results, status) {
             if (status === 'OK') {
