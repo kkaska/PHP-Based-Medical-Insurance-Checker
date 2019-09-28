@@ -59,7 +59,14 @@ function loadMap(lat, lng) {
                 marker.addListener('click', function () {
                     infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode));
                     infoWindow.open(map, marker);
-                })
+                    $('.hospital-data').removeClass('bg-success text-dark');
+                    $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-success text-dark');
+
+                    // Need this otherwise the highlight remains if the user closes the infowindow.
+                    infoWindow.addListener('closeclick', function () {
+                        $('.hospital-data').removeClass('bg-success text-dark');
+                    });
+                });
             }
         });
     });
@@ -68,7 +75,7 @@ function loadMap(lat, lng) {
 //make this function retrieve an html file and fill it out
 function getInfoWindowHTML(hospitalName, address, city, postCode) {
     return "<div class='container text-center'>" +
-                "<h5 class='firstHeading'>" + hospitalName + "</h5>" +
+                "<a href='#'><h5 class='firstHeading'>" + hospitalName + "</h5></a>" +      //TODO: Link this to the view for the selected hospital
                     "<div id='bodyContent'>" +
                         "<p><strong class='text-info'>Address: </strong>" + address + "</p>" +
                         "<p><strong class='text-info'>City: </strong>" + city + "</p>" +
