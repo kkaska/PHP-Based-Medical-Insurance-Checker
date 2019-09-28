@@ -37,14 +37,20 @@ function loadMap(lat, lng) {
         zoom: 9
     });
 
-    $('.hospital-name').each(function () {
-        geocoder.geocode({'address' : $(this).text()}, function (results, status) {
+    $('.hospital-data').each(function () {
+        let hospitalAddress = $(this).data('hospital-address');
+        let hospitalName = $(this).find('.hospital-name').text();
+        let city = $(this).find('.hospital-city').text();
+
+        let address = hospitalName + ' ' + hospitalAddress + ' ' + city;
+
+        geocoder.geocode({'address' : address}, function (results, status) {
             if (status === 'OK') {
                 var marker = new google.maps.Marker({
                     map: map,
                     position : results[0].geometry.location
-                })
+                });
             }
-        })
-    })
+        });
+    });
 }

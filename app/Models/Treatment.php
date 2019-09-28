@@ -30,6 +30,7 @@ class Treatment extends Model
             ->select(
                 'drgdefinition.Name as DiseaseName',
                 'hospital.Name as HospitalName',
+                'hospital.StreetAddress as HospitalAddress',
                 'hospital.City',
                 'treatmentdetails.AverageCoveredCharges',
                 'treatmentdetails.Year',
