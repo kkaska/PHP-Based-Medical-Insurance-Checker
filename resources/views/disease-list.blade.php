@@ -21,12 +21,11 @@
                         <th scope="col" class="align-middle">Distance</th>
                     </tr>
                     <tbody>
-
                     @for($i = 0; $i < count($treatments); $i++)
-                        <tr scope="row">
+                        <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
                             <td>{{ $treatments[$i]->DiseaseName }}</td>
                             <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
-                            <td>{{ $treatments[$i]->City }}</td>
+                            <td class="hospital-city">{{ $treatments[$i]->City }}</td>
                             <td>@parseMoney($treatments[$i]->AverageCharges)</td>
                             <td></td>
                         </tr>

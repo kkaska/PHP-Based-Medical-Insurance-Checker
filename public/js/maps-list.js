@@ -37,14 +37,50 @@ function loadMap(lat, lng) {
         zoom: 9
     });
 
-    $('.hospital-name').each(function () {
-        geocoder.geocode({'address' : $(this).text()}, function (results, status) {
+    let infoWindow = new google.maps.InfoWindow({
+        content: null
+    });
+
+    $('.hospital-data').each(function () {
+        let hospitalAddress = $(this).data('hospital-address');
+        let hospitalPostCode = $(this).data('hospital-postcode');
+        let hospitalName = $(this).find('.hospital-name').text();
+        let city = $(this).find('.hospital-city').text();
+        let address = hospitalName + ' ' + hospitalAddress + ' ' + city;
+
+        geocoder.geocode({'address' : address}, function (results, status) {
             if (status === 'OK') {
-                var marker = new google.maps.Marker({
+                let marker = new google.maps.Marker({
                     map: map,
-                    position : results[0].geometry.location
-                })
+                    position : results[0].geometry.location,
+                    title: hospitalName
+                });
+
+                marker.addListener('click', function () {
+                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode));
+                    infoWindow.open(map, marker);
+                    $('.hospital-data').removeClass('bg-success text-dark');
+                    $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-success text-dark');
+
+                    // Need this otherwise the highlight remains if the user closes the infowindow.
+                    infoWindow.addListener('closeclick', function () {
+                        $('.hospital-data').removeClass('bg-success text-dark');
+                    });
+                });
             }
-        })
-    })
+        });
+    });
+}
+
+//make this function retrieve an html file and fill it out
+function getInfoWindowHTML(hospitalName, address, city, postCode) {
+    return "<div class='container text-center'>" +
+                "<a href='#'><h5 class='firstHeading'>" + hospitalName + "</h5></a>" +      //TODO: Link this to the view for the selected hospital
+                    "<div id='bodyContent'>" +
+                        "<p><strong class='text-info'>Address: </strong>" + address + "</p>" +
+                        "<p><strong class='text-info'>City: </strong>" + city + "</p>" +
+                        "<p><strong class='text-info'>Post Code: </strong>" + postCode + "</p>" +
+                    "</div>" +
+                "</div>" +
+            "</div>";
 }

@@ -30,7 +30,9 @@ class Treatment extends Model
             ->select(
                 'drgdefinition.Name as DiseaseName',
                 'hospital.Name as HospitalName',
+                'hospital.StreetAddress as HospitalAddress',
                 'hospital.City',
+                'hospital.Zip as HospitalPostCode',
                 'treatmentdetails.AverageCoveredCharges',
                 'treatmentdetails.Year',
                 DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')
