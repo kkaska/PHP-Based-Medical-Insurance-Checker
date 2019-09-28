@@ -32,6 +32,7 @@ class Treatment extends Model
                 'hospital.Name as HospitalName',
                 'hospital.StreetAddress as HospitalAddress',
                 'hospital.City',
+                'hospital.Zip as HospitalPostCode',
                 'treatmentdetails.AverageCoveredCharges',
                 'treatmentdetails.Year',
                 DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')

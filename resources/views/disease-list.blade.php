@@ -22,7 +22,7 @@
                     </tr>
                     <tbody>
                     @for($i = 0; $i < count($treatments); $i++)
-                        <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}">
+                        <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
                             <td>{{ $treatments[$i]->DiseaseName }}</td>
                             <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
                             <td class="hospital-city">{{ $treatments[$i]->City }}</td>

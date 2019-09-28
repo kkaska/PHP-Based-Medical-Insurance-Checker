@@ -37,20 +37,43 @@ function loadMap(lat, lng) {
         zoom: 9
     });
 
+    let infoWindow = new google.maps.InfoWindow({
+        content: null
+    });
+
     $('.hospital-data').each(function () {
         let hospitalAddress = $(this).data('hospital-address');
+        let hospitalPostCode = $(this).data('hospital-postcode');
         let hospitalName = $(this).find('.hospital-name').text();
         let city = $(this).find('.hospital-city').text();
-
         let address = hospitalName + ' ' + hospitalAddress + ' ' + city;
 
         geocoder.geocode({'address' : address}, function (results, status) {
             if (status === 'OK') {
-                var marker = new google.maps.Marker({
+                let marker = new google.maps.Marker({
                     map: map,
-                    position : results[0].geometry.location
+                    position : results[0].geometry.location,
+                    title: hospitalName
                 });
+
+                marker.addListener('click', function () {
+                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode));
+                    infoWindow.open(map, marker);
+                })
             }
         });
     });
+}
+
+//make this function retrieve an html file and fill it out
+function getInfoWindowHTML(hospitalName, address, city, postCode) {
+    return "<div class='container text-center'>" +
+                "<h5 class='firstHeading'>" + hospitalName + "</h5>" +
+                    "<div id='bodyContent'>" +
+                        "<p><strong class='text-info'>Address: </strong>" + address + "</p>" +
+                        "<p><strong class='text-info'>City: </strong>" + city + "</p>" +
+                        "<p><strong class='text-info'>Post Code: </strong>" + postCode + "</p>" +
+                    "</div>" +
+                "</div>" +
+            "</div>";
 }
