@@ -31,14 +31,27 @@ function initMap() {
 
 function loadMap(lat, lng) {
     let geocoder = new google.maps.Geocoder;
+    let userPosition = {lat: lat, lng: lng};
 
     let map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: lat, lng: lng},
-        zoom: 9
+        center: userPosition,
+        zoom: 11
     });
 
     let infoWindow = new google.maps.InfoWindow({
         content: null
+    });
+
+    let userMarker = new google.maps.Marker({
+        map: map,
+        position: userPosition,
+        icon: "../img/current-location.png",
+        title: "Your Current Location"
+    });
+
+    userMarker.addListener('click', function () {
+        infoWindow.setContent('<div><h5>Your Current Location</h5></div>');
+        infoWindow.open(map, userMarker);
     });
 
     $('.hospital-data').each(function () {
@@ -53,11 +66,20 @@ function loadMap(lat, lng) {
                 let marker = new google.maps.Marker({
                     map: map,
                     position : results[0].geometry.location,
-                    title: hospitalName
+                    title: hospitalName,
+                    icon: "../img/hospital-location.png"
                 });
 
+                let distanceFromUser = google.maps.geometry.spherical.computeDistanceBetween(
+                    new google.maps.LatLng(lat, lng),
+                    new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng())
+                );
+
+                let milesToHospital = converMetersToMiles(distanceFromUser);
+                $('[data-hospital-address="' + hospitalAddress + '"] .distance').text(milesToHospital);
+
                 marker.addListener('click', function () {
-                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode));
+                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, milesToHospital));
                     infoWindow.open(map, marker);
                     $('.hospital-data').removeClass('bg-success text-dark');
                     $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-success text-dark');
@@ -73,14 +95,28 @@ function loadMap(lat, lng) {
 }
 
 //make this function retrieve an html file and fill it out
-function getInfoWindowHTML(hospitalName, address, city, postCode) {
+function getInfoWindowHTML(hospitalName, address, city, postCode, distance) {
     return "<div class='container text-center'>" +
                 "<a href='#'><h5 class='firstHeading'>" + hospitalName + "</h5></a>" +      //TODO: Link this to the view for the selected hospital
                     "<div id='bodyContent'>" +
                         "<p><strong class='text-info'>Address: </strong>" + address + "</p>" +
                         "<p><strong class='text-info'>City: </strong>" + city + "</p>" +
                         "<p><strong class='text-info'>Post Code: </strong>" + postCode + "</p>" +
+                        "<p><strong class='text-info'>Distance: </strong>" + distance + "</p>" +
                     "</div>" +
                 "</div>" +
             "</div>";
+}
+
+function converMetersToMiles(meters) {
+    let raw = meters * 0.00062137;
+    let miles= Math.round(raw * 100) / 100;
+
+    if (miles < 1) {
+        return 'Less than 1 mile'
+    } else if (miles >= 1 && miles < 5) {
+        return 'Less than 5 miles'
+    } else {
+        return miles + ' miles'
+    }
 }

@@ -27,7 +27,7 @@
                             <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
                             <td class="hospital-city">{{ $treatments[$i]->City }}</td>
                             <td>@parseMoney($treatments[$i]->AverageCharges)</td>
-                            <td></td>
+                            <td class="distance"></td>
                         </tr>
                     @endfor
 
