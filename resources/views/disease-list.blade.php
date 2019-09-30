@@ -18,10 +18,10 @@
                     </tr>
                     <tbody>
                     @for($i = 0; $i < count($treatments); $i++)
-                        <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
+                        <tr class="hospital-data text-lowercase" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
                             <td>{{ $treatments[$i]->DiseaseName }}</td>
-                            <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
-                            <td class="hospital-city">{{ $treatments[$i]->City }}</td>
+                            <td class="hospital-name text-lowercase">{{ $treatments[$i]->HospitalName }}</td>
+                            <td class="hospital-city text-lowercase">{{ $treatments[$i]->City }}</td>
                             <td>@parseMoney($treatments[$i]->AverageCharges)</td>
                             <td>
                                 <a href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>More</a>
