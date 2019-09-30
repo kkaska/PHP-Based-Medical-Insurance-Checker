@@ -61,7 +61,7 @@
             }
             });
             },
-        minLength: 4
+        minLength: 3
         });
 
         //Autocomplete the search form
