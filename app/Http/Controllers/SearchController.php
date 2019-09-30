@@ -67,7 +67,11 @@ class SearchController extends BaseController
 
     public function viewTreatment(Request $request)
     {
-        //can access variables through $request->get();
-        var_dump($request->all());
+        $diseaseID = $request->get('disease');
+        $hospitalID = $request->get('hospital');
+        $years = Treatment::where('DrgId', $diseaseID)->where('HospitalId', $hospitalID)->select('Year', 'AverageTotalPayments')->get();
+
+
+        return view('view', compact('years'));
     }
 } 

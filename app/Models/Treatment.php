@@ -29,6 +29,8 @@ class Treatment extends Model
             })
             ->select(
                 'drgdefinition.Name as DiseaseName',
+                'drgdefinition.Id as DiseaseID',
+                'hospital.Id as HospitalID',
                 'hospital.Name as HospitalName',
                 'hospital.StreetAddress as HospitalAddress',
                 'hospital.City',
