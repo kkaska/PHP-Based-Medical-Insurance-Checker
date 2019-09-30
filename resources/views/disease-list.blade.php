@@ -5,7 +5,7 @@
 
 <div class="container-fluid mt-3">
     <div class="card-group">
-        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow:auto border-success bg-light" style="height: 600px; min-width:500px;">
+        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow:auto border-success bg-light" style="height:600px; min-height: 500px; min-width:320px;">
             <div class="card-body table-responsive">
                 <table class="table table-hover">
                     <tr>
@@ -38,7 +38,7 @@
                 {!! $treatments->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
-        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-6 border-success bg-light" style="height:600px; min-width: 500px;">
+        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-6 border-success bg-light" style="height: 600px; min-height: 500px; min-width: 320px;">
             <div class="card-body">
                 <!-- Google Maps -->
                 <div id="map"></div>
