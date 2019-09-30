@@ -1,3 +1,5 @@
+var count = 0;
+
 function initMap() {
     let geocoder = new google.maps.Geocoder;
 
@@ -41,12 +43,22 @@ function loadMap(lat, lng) {
         content: null
     });
 
+
     $('.hospital-data').each(function () {
         let hospitalAddress = $(this).data('hospital-address');
         let hospitalPostCode = $(this).data('hospital-postcode');
         let hospitalName = $(this).find('.hospital-name').text();
         let city = $(this).find('.hospital-city').text();
         let address = hospitalName + ' ' + hospitalAddress + ' ' + city;
+
+        alert(lat);
+        if (position.lat != null && position.lng != null) {
+          alert(count);
+          var output = document.getElementById(count);
+          output.innerHTML = count;
+          count++;
+        }
+
 
         geocoder.geocode({'address' : address}, function (results, status) {
             if (status === 'OK') {
@@ -55,6 +67,8 @@ function loadMap(lat, lng) {
                     position : results[0].geometry.location,
                     title: hospitalName
                 });
+
+
 
                 marker.addListener('click', function () {
                     infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode));
@@ -69,7 +83,16 @@ function loadMap(lat, lng) {
                 });
             }
         });
+        var locationimage = '../img/MyLocation.png';
+        let userLocation = new google.maps.Marker({
+            map: map,
+            position : {lat: lat, lng: lng},
+            icon: locationimage,
+            title: "Your Location"
+        });
     });
+
+
 }
 
 //make this function retrieve an html file and fill it out
