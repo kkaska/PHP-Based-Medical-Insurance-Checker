@@ -11,13 +11,13 @@
                     <hr class="my-4 w-50">
                     {{ Form::open(array('url' => 'search', 'method' => 'post')) }}
                     <div class="form-row justify-content-center">
-                        <div class="col-xl-3">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <input class="typeahead form-control form-control-lg" type="text"  id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autofocus autocomplete="off">
                                 <label style="display: none" for="disease">procedure</label>
                             </div>
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-xl-4">
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="City" required>
