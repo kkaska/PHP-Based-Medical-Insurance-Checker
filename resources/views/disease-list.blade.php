@@ -27,9 +27,7 @@
                             <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
                             <td class="hospital-city">{{ $treatments[$i]->City }}</td>
                             <td>@parseMoney($treatments[$i]->AverageCharges)</td>
-                            <td>
-                                <a href='treatment?disease={{urlencode($treatments[$i]->DiseaseName)}}&hospital={{urlencode($treatments[$i]->HospitalName)}}'>link</a>
-                            </td>
+                            <td class="distance"></td>
                         </tr>
                     @endfor
 
