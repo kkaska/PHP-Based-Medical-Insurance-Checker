@@ -64,4 +64,10 @@ class SearchController extends BaseController
  
         return response()->json($result);
     }
+
+    public function viewTreatment(Request $request)
+    {
+        //can access variables through $request->get();
+        var_dump($request->all());
+    }
 } 
