@@ -25,7 +25,7 @@ class SearchController extends BaseController
         session(['user-longitude' => $request->input('user-longitude')]);
         $url = sprintf('search/list?city=%s&disease=%s',
             $request->input('city'),
-            $request->input('disease')
+            urlencode($request->input('disease'))
         );
 
         return redirect($url);
