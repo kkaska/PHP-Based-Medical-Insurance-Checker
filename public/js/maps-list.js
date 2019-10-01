@@ -60,6 +60,7 @@ function loadMap(lat, lng) {
         let hospitalName = $(this).find('.hospital-name').text();
         let city = $(this).find('.hospital-city').text();
         let address = hospitalName + ' ' + hospitalAddress + ' ' + city;
+        let distance = $(this).find('.distance').text();
 
         geocoder.geocode({'address' : address}, function (results, status) {
             if (status === 'OK') {
@@ -70,17 +71,22 @@ function loadMap(lat, lng) {
                     icon: "../img/hospital-location.png"
                 });
 
-                marker.addListener('click', function () {
-                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, milesToHospital));
+                // The opening infoWindow and highlighting of table row event
+                let event = function () {
+                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, distance));
                     infoWindow.open(map, marker);
-                    $('.hospital-data').removeClass('bg-success text-dark');
-                    $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-success text-dark');
+                    $('.hospital-data').removeClass('bg-primary text-dark');
+                    $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-primary text-dark');
 
                     // Need this otherwise the highlight remains if the user closes the infowindow.
                     infoWindow.addListener('closeclick', function () {
-                        $('.hospital-data').removeClass('bg-success text-dark');
+                        $('.hospital-data').removeClass('bg-primary text-dark');
                     });
-                });
+                }
+
+                // Apply the same click event to both the row and the map marker
+                $('[data-hospital-address="' + hospitalAddress + '"]').click(event);
+                marker.addListener('click', event);
             }
         });
     });
@@ -88,8 +94,10 @@ function loadMap(lat, lng) {
 
 //make this function retrieve an html file and fill it out
 function getInfoWindowHTML(hospitalName, address, city, postCode, distance) {
+    let link = $('[data-hospital-address="' + address + '"]').attr('href'); // TODO: figure out why this doesn't work
+    console.log(link);
     return "<div class='container text-center'>" +
-                "<a href='#'><h5 class='firstHeading'>" + hospitalName + "</h5></a>" +      //TODO: Link this to the view for the selected hospital
+                "<a href='" + link + "'><h5 class='firstHeading'>" + hospitalName + "</h5></a>" +      //TODO: Link this to the view for the selected hospital
                     "<div id='bodyContent'>" +
                         "<p><strong class='text-info'>Address: </strong>" + address + "</p>" +
                         "<p><strong class='text-info'>City: </strong>" + city + "</p>" +

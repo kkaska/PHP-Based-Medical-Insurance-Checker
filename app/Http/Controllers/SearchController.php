@@ -77,14 +77,4 @@ class SearchController extends BaseController
  
         return response()->json($result);
     }
-
-    public function viewTreatment(Request $request)
-    {
-        $diseaseID = $request->get('disease');
-        $hospitalID = $request->get('hospital');
-        $years = Treatment::where('DrgId', $diseaseID)->where('HospitalId', $hospitalID)->select('Year', 'AverageTotalPayments')->get();
-
-
-        return view('view', compact('years'));
-    }
 } 

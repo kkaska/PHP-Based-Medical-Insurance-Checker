@@ -3,7 +3,7 @@
 @section('content')
 @include('layouts.partials.search')
 
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3 mb-3">
     <div class="card-group">
 
         <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow:auto border-success bg-light" style="min-height: 500px; min-width:320px;">
@@ -52,12 +52,12 @@
                     <tbody>
                         @for($i = 0; $i < count($treatments); $i++)
                         <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
-                            <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
-                            <td class="hospital-city text-capitalize">{{ $treatments[$i]->City }}</td>
-                            <td>@parseMoney($treatments[$i]->AverageCharges)</td>
-                            <td>@parseDistance($treatments[$i]->Distance)</td>
-                            <td>
-                                <a href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>View</a>
+                            <td class="hospital-name align-middle">{{ $treatments[$i]->HospitalName }}</td>
+                            <td class="hospital-city text-capitalize align-middle">{{ $treatments[$i]->City }}</td>
+                            <td class="align-middle">@parseMoney($treatments[$i]->AverageCharges)</td>
+                            <td class="distance align-middle" style="min-width: 60px">@parseDistance($treatments[$i]->Distance)</td>
+                            <td class="align-middle">
+                                <a class="btn btn-secondary" href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>View</a>
                             </td>
                         </tr>
                         @endfor
@@ -72,10 +72,10 @@
                 </div>
             </div>
         </div>
-        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-6 border-success bg-light" style="min-height: 500px; min-width: 320px;">
-            <div class="card-body">
+        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-6 border-success bg-light p-3" style="min-height: 500px; min-width: 320px;">
+            <div class="card-body " style="position: relative">
                 <!-- Google Maps -->
-                <div id="map"></div>
+                <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0" id="map"></div>
                 <script>
                     var position = {lat: {{ json_encode($userLatitude) }}, lng: {{ json_encode($userLongitude) }}};   //Get Lat and Lng from laravel's session
                 </script>
