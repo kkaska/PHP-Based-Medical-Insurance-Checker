@@ -1,14 +1,16 @@
 @extends('layouts.app')
-
+@section('pageTitle', 'Search Result')
 @section('content')
 @include('layouts.partials.search')
 
 <div class="container-fluid mt-3 mb-3">
     <div class="card-group">
+
         <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow:auto border-success bg-light" style="min-height: 500px; min-width:320px;">
             <div class="card-body table-responsive pl-0 pr-0">
                 <p class="lead text-center pl-3 pr-3" style="font-size: 20px;" >You are searching for <strong>{{ $disease }}</strong> in <strong>{{ $city }}</strong> within <strong>{{ $radius }}</strong> miles.</p>
                 <table class="table table-hover table-sm">
+                <caption style="display: none;">A table displaying a list of hospitals that provide the searched procedure.</caption>
                     <tr>
                         <th scope="col" class="align-middle">Hospital</th>
                         <th scope="col" class="align-middle">City</th>
@@ -59,6 +61,10 @@
                             </td>
                         </tr>
                         @endfor
+                        @if(count($treatments) === 0)
+                        <tr> <td> No treatments Found </td> </tr>
+                        <script> ("No treatments found, Try searching again with different parameters!"); </script>
+                        @endif
                     </tbody>
                 </table>
                 <div class="flexBox" style="display: flex; flex-flow: row wrap; justify-content: center;">

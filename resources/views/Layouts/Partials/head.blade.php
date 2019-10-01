@@ -3,8 +3,6 @@
 <meta name="description" content="A prototype">
 <meta name="author" content="Team 7 Industrial Project">
 
-<title>HealthScanner</title>
-
 <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('css/customCSS.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('css/google-maps.css') }}">
