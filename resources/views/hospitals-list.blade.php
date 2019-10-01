@@ -7,7 +7,7 @@
             <thead>
             <tr>
                 <th scope="col">Name</th>
-                <th scope="col">City</th>
+                <th scope="col">@sortablelink('city', 'City')</th>
                 <th scope="col">State</th>
                 <th scope="col">Street Address</th>
                 <th scope="col">ZIP Code</th>

@@ -41,8 +41,13 @@ class SearchController extends BaseController
         $userLatitude = session()->has('user-latitude') ? (float) session()->get('user-latitude') : null;
         $userLongitude = session()->has('user-longitude') ? (float) session()->get('user-longitude') : null;
 
-        $treatments = Treatment::searchInRadius($disease, $userLatitude, $userLongitude, $radius)
-            ->paginate(self::PAGE_SIZE);
+        $query = Treatment::searchInRadius($disease, $userLatitude, $userLongitude, $radius);
+
+        if($request->has('cost') && in_array($request->get('cost'), ['ASC', 'DESC'])) {
+            $query->orderBy('AverageCharges', $request->get('cost'));
+        }
+
+        $treatments = $query->paginate(self::PAGE_SIZE);
 
         return view('disease-list', [
             'treatments' => $treatments,

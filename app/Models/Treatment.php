@@ -10,11 +10,9 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Treatment extends Model
 {
-    use Sortable;
     protected $table = 'treatmentdetails';
     public $timestamps = false;
-    public $sortable = ['AverageCoveredCharges'];
-    
+
     /*
      * Look up records from the treatment table, for a $disease that is in a hospital in
      * the bounding circle with a center of
@@ -24,14 +22,14 @@ class Treatment extends Model
     {
         //TODO: add harvesine as a scope function of the model
         $haversine = "(3959 * acos(cos(radians($latitude)) * cos(radians(hospital.Latitude)) * cos(radians(hospital.Longitude) - radians($longitude)) + sin(radians($latitude)) * sin(radians(hospital.Latitude))))";
-        $treatments = Hospital::
+        $query = Hospital::
             selectRaw("{$haversine} AS distance")
             ->join('treatmentdetails', function ($join) {
                 $join->on('treatmentdetails.HospitalId', '=', 'hospital.Id');
             })
             ->join('drgdefinition', function ($join) use ($disease) {
                 $join->on('treatmentdetails.DrgId', '=', 'drgdefinition.Id')
-                    ->where('drgdefinition.Name', 'LIKE', '%' . $disease . '%');
+                    ->where('drgdefinition.Name', '=', $disease);
             })
             ->select(
                 'drgdefinition.Name as DiseaseName',
@@ -46,9 +44,9 @@ class Treatment extends Model
                 DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')
             )
             ->groupBy('hospital.Name')
-            ->orderBy('AverageCharges')
             ->whereRaw("{$haversine} < ?", [$radius]);
 
-        return $treatments;
+        return $query;
     }
+
 }
