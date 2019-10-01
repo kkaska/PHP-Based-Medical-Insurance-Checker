@@ -4309,6 +4309,7 @@ class ComposerStaticInitcc587bbe3081698f6e92a00c7b6d66fa
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'postcode_to_zip' => __DIR__ . '/../..' . '/database/seeds/postcode_to_zip.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

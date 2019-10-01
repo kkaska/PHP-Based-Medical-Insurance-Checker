@@ -3,29 +3,33 @@
 
 namespace App\Models;
 
+use App\Hospital;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Kyslik\ColumnSortable\Sortable;
 
 class Treatment extends Model
 {
-    use Sortable;
     protected $table = 'treatmentdetails';
     public $timestamps = false;
-    public $sortable = ['AverageCoveredCharges'];
 
     /*
-     * Joins the Hospital, Treatment and dRGDefinition tables on Ids and returns a query as a result.
+     * Look up records from the treatment table, for a $disease that is in a hospital in
+     * the bounding circle with a center of
+     * $latitude and $longitude in a radius $radius (measured in miles).
      * */
-    public static function search(string $disease, string $city)
+    public static function searchInRadius(string $disease, float $latitude, float $longitude, int $radius = 25)
     {
-        $treatments = Treatment::join('hospital', function ($join) use ($city) {
-                $join->on('treatmentdetails.HospitalId', '=', 'hospital.Id')
-                    ->where('hospital.City', 'LIKE', '%' . $city . '%');
+        //TODO: add harvesine as a scope function of the model
+        $haversine = "(3959 * acos(cos(radians($latitude)) * cos(radians(hospital.Latitude)) * cos(radians(hospital.Longitude) - radians($longitude)) + sin(radians($latitude)) * sin(radians(hospital.Latitude))))";
+        $query = Hospital::
+            selectRaw("{$haversine} AS distance")
+            ->join('treatmentdetails', function ($join) {
+                $join->on('treatmentdetails.HospitalId', '=', 'hospital.Id');
             })
             ->join('drgdefinition', function ($join) use ($disease) {
                 $join->on('treatmentdetails.DrgId', '=', 'drgdefinition.Id')
-                    ->where('drgdefinition.Name', 'LIKE', '%' . $disease . '%');
+                    ->where('drgdefinition.Name', '=', $disease);
             })
             ->select(
                 'drgdefinition.Name as DiseaseName',
@@ -37,11 +41,13 @@ class Treatment extends Model
                 'hospital.Zip as HospitalPostCode',
                 'treatmentdetails.AverageCoveredCharges',
                 'treatmentdetails.Year',
-                DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')
+                DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges'),
+                DB::raw("{$haversine} as Distance")
             )
             ->groupBy('hospital.Name')
-            ->orderBy('AverageCharges');
+            ->whereRaw("{$haversine} < ?", [$radius]);
 
-        return $treatments;
+        return $query;
     }
+
 }

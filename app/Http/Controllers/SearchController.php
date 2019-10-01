@@ -23,9 +23,10 @@ class SearchController extends BaseController
     {
         session(['user-latitude' => $request->input('user-latitude')]);
         session(['user-longitude' => $request->input('user-longitude')]);
-        $url = sprintf('search/list?city=%s&disease=%s',
+        $url = sprintf('search/list?city=%s&disease=%s&radius=%d',
             $request->input('city'),
-            $request->input('disease')
+            urlencode($request->input('disease')),
+            $request->input('radius')
         );
 
         return redirect($url);
@@ -35,16 +36,28 @@ class SearchController extends BaseController
     {
         $disease = $request->get('disease');
         $city = $request->get('city');
+        $radius = $request->get('radius');
 
-        $userLatitude = session()->has('user-latitude') ? (int) session()->get('user-latitude') : null;
-        $userLongitude = session()->has('user-longitude') ? (int) session()->get('user-longitude') : null;
+        $userLatitude = session()->has('user-latitude') ? (float) session()->get('user-latitude') : null;
+        $userLongitude = session()->has('user-longitude') ? (float) session()->get('user-longitude') : null;
 
-        $treatments = Treatment::search($disease, $city)->sortable(['AverageCoveredCharges'])->paginate(10);
+        $query = Treatment::searchInRadius($disease, $userLatitude, $userLongitude, $radius);
+
+        if($request->has('cost') && in_array($request->get('cost'), ['ASC', 'DESC'])) {
+            $query->orderBy('AverageCharges', $request->get('cost'));
+        }
+
+        if($request->has('distance') && in_array($request->get('distance'), ['ASC', 'DESC'])) {
+            $query->orderBy('Distance', $request->get('distance'));
+        }
+
+        $treatments = $query->paginate(self::PAGE_SIZE);
 
         return view('disease-list', [
             'treatments' => $treatments,
             'disease' => $disease,
             'city' => $city,
+            'radius' => $radius,
             'userLatitude' => $userLatitude,
             'userLongitude' => $userLongitude
         ]);
