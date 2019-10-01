@@ -50,12 +50,12 @@
                     <tbody>
                         @for($i = 0; $i < count($treatments); $i++)
                         <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
-                            <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
-                            <td class="hospital-city text-capitalize">{{ $treatments[$i]->City }}</td>
-                            <td>@parseMoney($treatments[$i]->AverageCharges)</td>
-                            <td class="distance">@parseDistance($treatments[$i]->Distance)</td>
-                            <td>
-                                <a href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>View</a>
+                            <td class="hospital-name align-middle">{{ $treatments[$i]->HospitalName }}</td>
+                            <td class="hospital-city text-capitalize align-middle">{{ $treatments[$i]->City }}</td>
+                            <td class="align-middle">@parseMoney($treatments[$i]->AverageCharges)</td>
+                            <td class="distance align-middle" style="min-width: 60px">@parseDistance($treatments[$i]->Distance)</td>
+                            <td class="align-middle">
+                                <a class="btn btn-dark" href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>View</a>
                             </td>
                         </tr>
                         @endfor
