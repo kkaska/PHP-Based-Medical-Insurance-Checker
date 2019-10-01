@@ -66,10 +66,10 @@
                 </div>
             </div>
         </div>
-        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-6 border-success bg-light" style="min-height: 500px; min-width: 320px;">
-            <div class="card-body">
+        <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-6 border-success bg-light p-3" style="min-height: 500px; min-width: 320px;">
+            <div class="card-body " style="position: relative">
                 <!-- Google Maps -->
-                <div id="map"></div>
+                <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0" id="map"></div>
                 <script>
                     var position = {lat: {{ json_encode($userLatitude) }}, lng: {{ json_encode($userLongitude) }}};   //Get Lat and Lng from laravel's session
                 </script>
