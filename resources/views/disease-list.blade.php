@@ -55,7 +55,7 @@
                             <td class="align-middle">@parseMoney($treatments[$i]->AverageCharges)</td>
                             <td class="distance align-middle" style="min-width: 60px">@parseDistance($treatments[$i]->Distance)</td>
                             <td class="align-middle">
-                                <a class="btn btn-dark" href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>View</a>
+                                <a class="btn btn-secondary" href='treatment?disease={{urlencode($treatments[$i]->DiseaseID)}}&hospital={{urlencode($treatments[$i]->HospitalID)}}'>View</a>
                             </td>
                         </tr>
                         @endfor

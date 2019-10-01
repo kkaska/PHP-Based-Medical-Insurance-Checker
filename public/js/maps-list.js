@@ -71,17 +71,22 @@ function loadMap(lat, lng) {
                     icon: "../img/hospital-location.png"
                 });
 
-                marker.addListener('click', function () {
+                // The opening infoWindow and highlighting of table row event
+                let event = function () {
                     infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, distance));
                     infoWindow.open(map, marker);
-                    $('.hospital-data').removeClass('bg-success text-dark');
-                    $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-success text-dark');
+                    $('.hospital-data').removeClass('bg-primary text-dark');
+                    $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-primary text-dark');
 
                     // Need this otherwise the highlight remains if the user closes the infowindow.
                     infoWindow.addListener('closeclick', function () {
-                        $('.hospital-data').removeClass('bg-success text-dark');
+                        $('.hospital-data').removeClass('bg-primary text-dark');
                     });
-                });
+                }
+
+                // Apply the same click event to both the row and the map marker
+                $('[data-hospital-address="' + hospitalAddress + '"]').click(event);
+                marker.addListener('click', event);
             }
         });
     });
