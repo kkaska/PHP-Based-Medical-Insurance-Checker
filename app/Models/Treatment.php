@@ -22,6 +22,7 @@ class Treatment extends Model
      * */
     public static function searchInRadius(string $disease, float $latitude, float $longitude, int $radius = 25)
     {
+        //TODO: add harvesine as a scope function of the model
         $haversine = "(3959 * acos(cos(radians($latitude)) * cos(radians(hospital.Latitude)) * cos(radians(hospital.Longitude) - radians($longitude)) + sin(radians($latitude)) * sin(radians(hospital.Latitude))))";
         $treatments = Hospital::
             selectRaw("{$haversine} AS distance")
