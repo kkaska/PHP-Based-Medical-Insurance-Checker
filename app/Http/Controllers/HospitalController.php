@@ -9,7 +9,7 @@ class HospitalController
 {
     public function list()
     {
-        $hospitals = Hospital::paginate(20);
+        $hospitals = Hospital::sortable()->paginate(20);
 
         return view('hospitals-list', [
             'hospitals' => $hospitals
