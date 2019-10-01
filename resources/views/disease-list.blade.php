@@ -7,7 +7,7 @@
     <div class="card-group">
         <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow:auto border-success bg-light" style="height:600px; min-height: 500px; min-width:320px;">
             <div class="card-body table-responsive">
-                <p class="lead text-center" style="font-size: 20px;" >You are searching for <strong>{{ $disease }}</strong> in <strong>{{ $city }}</strong>.</p>
+                <p class="lead text-center" style="font-size: 20px;" >You are searching for <strong>{{ $disease }}</strong> in <strong>{{ $city }}</strong> within <strong>{{ $radius }}</strong> miles.</p>
                 <table class="table table-hover">
                     <tr>
                         {{-- <th scope="col" class="align-middle">Treatment</th> --}}
@@ -47,17 +47,16 @@
         </div>
     </div>
 </div>
-@endsection
-
 <script type="text/javascript">
     $(document).ready(function() {
         //Autocomplete the search form
         let searchParams = new URLSearchParams(window.location.search);
-        if (searchParams.has('disease')) {
-            $disease.val(searchParams.get('disease'));
-        }
-        if (searchParams.has('city')) {
-            $city.val(searchParams.get('city'));
+
+        if (searchParams.has('radius')) {
+            console.log(searchParams.get('radius'));
+            $('#radius option[value=' + searchParams.get('radius') + ']').prop('selected', true);
         }
     });
 </script>
+@endsection
+

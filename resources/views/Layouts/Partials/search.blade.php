@@ -6,11 +6,23 @@
                     <h1 class="card-title text-center font-weight-bold text-darkgray"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
                     <hr class="my-4 w-50">
                     {{ Form::open(array('url' => 'search', 'method' => 'post', 'id' => 'searchForm')) }}
-                    <div class="form-row justify-content-center">
+                    <div class="form-row justify-content-center pl-2 pr-2">
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <input class="typeahead form-control form-control-lg" type="text"  id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autofocus autocomplete="off">
                                 <label style="display: none" for="disease">procedure</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="form-group">
+                                <select class="typeahead form-control form-control-lg" id="radius" name="radius" required>
+                                    <option value="" disabled selected>Radius (miles)</option>
+                                    <option value="10">10 miles</option>
+                                    <option value="25">25 miles</option>
+                                    <option value="50">50 miles</option>
+                                    <option value="100">100 miles</option>
+                                    <option value="1000">1000 miles</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-xl-4">
