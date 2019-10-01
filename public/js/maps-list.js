@@ -60,6 +60,7 @@ function loadMap(lat, lng) {
         let hospitalName = $(this).find('.hospital-name').text();
         let city = $(this).find('.hospital-city').text();
         let address = hospitalName + ' ' + hospitalAddress + ' ' + city;
+        let distance = $(this).find('.distance').text();
 
         geocoder.geocode({'address' : address}, function (results, status) {
             if (status === 'OK') {
@@ -71,7 +72,7 @@ function loadMap(lat, lng) {
                 });
 
                 marker.addListener('click', function () {
-                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, milesToHospital));
+                    infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, distance));
                     infoWindow.open(map, marker);
                     $('.hospital-data').removeClass('bg-success text-dark');
                     $('[data-hospital-address="' + hospitalAddress + '"]').addClass('bg-success text-dark');
