@@ -9,7 +9,7 @@
                     <div class="form-row justify-content-center pl-2 pr-2">
                         <div class="col-xl-6">
                             <div class="form-group">
-                                <input class="typeahead form-control form-control-lg" type="text"  id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autofocus autocomplete="off">
+                                <input class="typeahead form-control form-control-lg" type="text"  id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autocomplete="off">
                                 <label style="display: none" for="disease">procedure</label>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                                     <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="City" required>
                                     <label style="display: none" for="city">city</label>
                                     <div class="input-group-append">
-                                        <button id="location" class="btn btn-success text-darkgray font-weight-bold" type="button">Find</button>
+                                        <button id="Click to find location" class="btn btn-success text-darkgray font-weight-bold" type="button">Find</button>
                                     </div>
                                 </div>
                             </div>
