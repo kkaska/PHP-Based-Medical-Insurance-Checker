@@ -5,13 +5,13 @@
                 <nav class="navbar justify-content-start">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::to('/') }}/home">Home</a>
+                            <a class="nav-link font-weight-bold text-darkgray" href="{{ URL::to('/') }}/home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::to('/') }}/search">Search</a>
+                            <a class="nav-link font-weight-bold text-darkgray" href="{{ URL::to('/') }}/search">Search</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::to('/') }}/hospitals">Hospitals</a>
+                            <a class="nav-link font-weight-bold text-darkgray" href="{{ URL::to('/') }}/hospitals">Hospitals</a>
                         </li>
                     </ul>
                 </nav>

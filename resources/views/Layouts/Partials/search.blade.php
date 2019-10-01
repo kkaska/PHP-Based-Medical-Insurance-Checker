@@ -1,13 +1,9 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <div class="container-fluid mt-3">
     <div class="row justify-content-center">
         <div class="col-xl-12">
             <div class="card border-success bg-light">
                 <div class="card-body text-center">
-                    <h1 class="card-title text-center font-weight-bold text-success"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
+                    <h1 class="card-title text-center font-weight-bold text-darkgray"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
                     <hr class="my-4 w-50">
                     {{ Form::open(array('url' => 'search', 'method' => 'post')) }}
                     <div class="form-row justify-content-center">
@@ -23,7 +19,7 @@
                                     <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="City" required>
                                     <label style="display: none" for="city">city</label>
                                     <div class="input-group-append">
-                                        <button id="location" class="btn btn-success" type="button">Find</button>
+                                        <button id="location" class="btn btn-success text-darkgray font-weight-bold" type="button">Find</button>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +27,7 @@
                     </div>
                     <input type="hidden" id="user-latitude" name="user-latitude">
                     <input type="hidden" id="user-longitude" name="user-longitude">
-                    {{ Form::submit('Search', array('class' => 'btn btn-success btn-lg text-uppercase font-weight-bold')) }}
+                    {{ Form::submit('Search', array('class' => 'btn btn-success btn-lg text-uppercase font-weight-bold text-darkgray')) }}
                     {{ Form::close() }}
                     
                 </div>
@@ -61,7 +57,7 @@
             }
             });
             },
-        minLength: 4
+        minLength: 2
         });
 
         //Autocomplete the search form
