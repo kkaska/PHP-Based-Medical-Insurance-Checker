@@ -5,7 +5,7 @@
                 <div class="card-body text-center">
                     <h1 class="card-title text-center font-weight-bold text-darkgray"><img src={{ asset('img/icon.png') }} width = 50px height = 50px alt="HealthScanner icon logo">HealthScanner</h1>
                     <hr class="my-4 w-50">
-                    {{ Form::open(array('url' => 'search', 'method' => 'post')) }}
+                    {{ Form::open(array('url' => 'search', 'method' => 'post', 'id' => 'searchForm')) }}
                     <div class="form-row justify-content-center">
                         <div class="col-xl-6">
                             <div class="form-group">
@@ -27,9 +27,8 @@
                     </div>
                     <input type="hidden" id="user-latitude" name="user-latitude">
                     <input type="hidden" id="user-longitude" name="user-longitude">
-                    {{ Form::submit('Search', array('class' => 'btn btn-success btn-lg text-uppercase font-weight-bold text-darkgray')) }}
+                    <input type="button" id="search-button" class="btn btn-success btn-lg text-uppercase font-weight-bold text-darkgray" value="Search">
                     {{ Form::close() }}
-                    
                 </div>
             </div>
         </div>
@@ -60,7 +59,20 @@
         minLength: 2
         });
 
-        //Autocomplete the search form
+        $('#search-button').click(function () {
+            let geocoder = new google.maps.Geocoder;
+            geocoder.geocode({'address' : $("#city").val()}, function (results, status) {
+                if (status === 'OK') {
+                    let location = results[0].geometry.location;
+                    $('#user-latitude').val(location.lat());
+                    $('#user-longitude').val(location.lng());
+
+                    $('#searchForm').submit();
+                }
+            });
+        })
+
+        //Autofill the search form
         let searchParams = new URLSearchParams(window.location.search);
         if (searchParams.has('disease')) {
             $("#disease").val(searchParams.get('disease'));

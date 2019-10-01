@@ -25,7 +25,7 @@ class SearchController extends BaseController
         session(['user-longitude' => $request->input('user-longitude')]);
         $url = sprintf('search/list?city=%s&disease=%s',
             $request->input('city'),
-            $request->input('disease')
+            urlencode($request->input('disease'))
         );
 
         return redirect($url);
@@ -36,10 +36,11 @@ class SearchController extends BaseController
         $disease = $request->get('disease');
         $city = $request->get('city');
 
-        $userLatitude = session()->has('user-latitude') ? (int) session()->get('user-latitude') : null;
-        $userLongitude = session()->has('user-longitude') ? (int) session()->get('user-longitude') : null;
+        $userLatitude = session()->has('user-latitude') ? (float) session()->get('user-latitude') : null;
+        $userLongitude = session()->has('user-longitude') ? (float) session()->get('user-longitude') : null;
 
-        $treatments = Treatment::search($disease, $city)->sortable(['AverageCoveredCharges'])->paginate(10);
+        $treatments = Treatment::searchInRadius($disease, $userLatitude, $userLongitude, 50)
+            ->paginate(self::PAGE_SIZE);
 
         return view('disease-list', [
             'treatments' => $treatments,

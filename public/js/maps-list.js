@@ -35,7 +35,7 @@ function loadMap(lat, lng) {
 
     let map = new google.maps.Map(document.getElementById('map'), {
         center: userPosition,
-        zoom: 11
+        zoom: 10
     });
 
     let infoWindow = new google.maps.InfoWindow({
@@ -101,7 +101,7 @@ function getInfoWindowHTML(hospitalName, address, city, postCode, distance) {
                     "<div id='bodyContent'>" +
                         "<p><strong class='text-info'>Address: </strong>" + address + "</p>" +
                         "<p><strong class='text-info'>City: </strong>" + city + "</p>" +
-                        "<p><strong class='text-info'>Post Code: </strong>" + postCode + "</p>" +
+                        "<p><strong class='text-info'>Zip Code: </strong>" + postCode + "</p>" +
                         "<p><strong class='text-info'>Distance: </strong>" + distance + "</p>" +
                     "</div>" +
                 "</div>" +

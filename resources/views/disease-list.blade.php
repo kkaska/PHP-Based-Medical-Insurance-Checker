@@ -7,11 +7,12 @@
     <div class="card-group">
         <div class="card col-sm-12 col-md-12 col-lg-12 col-xl-12 overflow:auto border-success bg-light" style="height:600px; min-height: 500px; min-width:320px;">
             <div class="card-body table-responsive">
-                <p class="text-lowercase lead text-center" style="font-size: 20x;" >You are searching for <strong>{{ $disease }}</strong> in <strong>{{ $city }}</strong>.</p>
+                <p class="lead text-center" style="font-size: 20px;" >You are searching for <strong>{{ $disease }}</strong> in <strong>{{ $city }}</strong>.</p>
                 <table class="table table-hover">
                     <tr>
                         {{-- <th scope="col" class="align-middle">Treatment</th> --}}
                         <th scope="col" class="align-middle">Hospital</th>
+                        <th scope="col" class="align-middle">City</th>
                         {{-- <th scope="col" class="align-middle">City</th> --}}
                         <th scope="col" class="align-middle">@sortablelink('AverageCharges', 'Cost')</th>
                         <th scope="col" class="align-middle">Distance</th>
@@ -19,10 +20,9 @@
                     </tr>
                     <tbody>
                         @for($i = 0; $i < count($treatments); $i++)
-                        <tr class="hospital-data text-lowercase" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
-                            {{-- <td>{{ $treatments[$i]->DiseaseName }}</td> --}}
-                            <td class="hospital-name text-lowercase">{{ $treatments[$i]->HospitalName }}</td>
-                            {{-- <td class="hospital-city text-lowercase">{{ $treatments[$i]->City }}</td> --}}
+                        <tr class="hospital-data" scope="row" data-hospital-address="{{ $treatments[$i]->HospitalAddress }}" data-hospital-postCode="{{ $treatments[$i]->HospitalPostCode }}">
+                            <td class="hospital-name">{{ $treatments[$i]->HospitalName }}</td>
+                            <td class="hospital-city text-capitalize">{{ $treatments[$i]->City }}</td>
                             <td>@parseMoney($treatments[$i]->AverageCharges)</td>
                             <td class="distance"></td>
                             <td>
