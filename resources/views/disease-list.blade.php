@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('pageTitle', 'Search Result')
 @section('content')
 @include('layouts.partials.search')
 
@@ -9,6 +9,7 @@
             <div class="card-body table-responsive">
                 <p class="text-lowercase lead text-center" style="font-size: 20x;" >You are searching for <strong>{{ $disease }}</strong> in <strong>{{ $city }}</strong>.</p>
                 <table class="table table-hover">
+                    <caption style="display: none;">A table displaying a list of hospitals that provide the searched procedure.</caption>
                     <tr>
                         {{-- <th scope="col" class="align-middle">Treatment</th> --}}
                         <th scope="col" class="align-middle">Hospital</th>
@@ -30,6 +31,10 @@
                             </td>
                         </tr>
                         @endfor
+                        @if(count($treatments) === 0)
+                        <tr> <td> No treatments Found </td> </tr>
+                        <script> ("No treatments found, Try searching again with different parameters!"); </script>
+                        @endif
                     </tbody>
                 </table> 
                 {!! $treatments->appends(\Request::except('page'))->render() !!}

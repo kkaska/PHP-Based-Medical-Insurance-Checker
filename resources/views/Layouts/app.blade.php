@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-	header {
+{{-- <style>
+	/* header {
   background-color: #666;
   padding: 30px;
   text-align: center;
@@ -27,15 +27,18 @@
     height:100%;
     width:100%;
     position:absolute;
-  }
-</style>
+  } */
+</style> --}}
   <head>
+      <title>@yield('pageTitle') | HealthScanner</title>
       @include('layouts.partials.head')
   </head>
 
   <body class="bg-primary">
+    {{-- Allows screen readers to skip past the navigation and search to the main content of the page --}}
+      <a href="#content" style="display:none;">Skip to content</a>
     @include('layouts.partials.header')
-    <div class="content">
+    <div class="content" id='content'>
       @yield('content')
     </div>
       @include('layouts.partials.footer')

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('pageTitle', 'Hospitals List')
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" integrity="sha384-+GtXzQ3eTCAK6MNrGmy3TcOujpxp7MnMAi6nvlvbZlETUcZeCk7TDwvlCw9RiV6R" crossorigin="anonymous"></script>
     <div class="container">
