@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <style>
 	header {
   background-color: #666;
@@ -27,10 +27,6 @@
     height:100%;
     width:100%;
     position:absolute;
-  }
-
-  .center-card{
-    transform: translateY(50%);
   }
 </style>
   <head>
