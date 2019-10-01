@@ -70,14 +70,6 @@ function loadMap(lat, lng) {
                     icon: "../img/hospital-location.png"
                 });
 
-                let distanceFromUser = google.maps.geometry.spherical.computeDistanceBetween(
-                    new google.maps.LatLng(lat, lng),
-                    new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng())
-                );
-
-                let milesToHospital = converMetersToMiles(distanceFromUser);
-                $('[data-hospital-address="' + hospitalAddress + '"] .distance').text(milesToHospital);
-
                 marker.addListener('click', function () {
                     infoWindow.setContent(getInfoWindowHTML(hospitalName, hospitalAddress, city, hospitalPostCode, milesToHospital));
                     infoWindow.open(map, marker);
@@ -106,17 +98,4 @@ function getInfoWindowHTML(hospitalName, address, city, postCode, distance) {
                     "</div>" +
                 "</div>" +
             "</div>";
-}
-
-function converMetersToMiles(meters) {
-    let raw = meters * 0.00062137;
-    let miles= Math.round(raw * 100) / 100;
-
-    if (miles < 1) {
-        return 'Less than 1 mile'
-    } else if (miles >= 1 && miles < 5) {
-        return 'Less than 5 miles'
-    } else {
-        return miles + ' miles'
-    }
 }

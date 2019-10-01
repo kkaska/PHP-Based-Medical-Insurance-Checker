@@ -47,6 +47,10 @@ class SearchController extends BaseController
             $query->orderBy('AverageCharges', $request->get('cost'));
         }
 
+        if($request->has('distance') && in_array($request->get('distance'), ['ASC', 'DESC'])) {
+            $query->orderBy('Distance', $request->get('distance'));
+        }
+
         $treatments = $query->paginate(self::PAGE_SIZE);
 
         return view('disease-list', [

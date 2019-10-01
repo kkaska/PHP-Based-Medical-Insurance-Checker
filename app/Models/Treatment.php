@@ -41,7 +41,8 @@ class Treatment extends Model
                 'hospital.Zip as HospitalPostCode',
                 'treatmentdetails.AverageCoveredCharges',
                 'treatmentdetails.Year',
-                DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges')
+                DB::raw('AVG(treatmentdetails.AverageCoveredCharges) as AverageCharges'),
+                DB::raw("{$haversine} as Distance")
             )
             ->groupBy('hospital.Name')
             ->whereRaw("{$haversine} < ?", [$radius]);
