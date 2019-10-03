@@ -29,3 +29,4 @@ Route::get('search/list', 'SearchController@list');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 
 Route::get('search/treatment', 'TreatmentController@view');
+Route::get('search/treatment-info', 'TreatmentController@treatmentInfo');

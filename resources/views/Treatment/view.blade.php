@@ -5,7 +5,7 @@
         <div class="card-group">
             <div class="card overflow-auto border-success bg-light" style="min-height: 700px">
                 <div class="card-body pl-3 pr-3">
-                    <h1 class="text-center text-dark">{{$disease->Name}}</h1>
+                    <h1 class="text-center text-dark">{{$diseaseName}}</h1>
                     <hr class="my-4 w-75">
                     <div class="row">
                         <div class="col-md-6">
@@ -69,20 +69,48 @@
                                     </h4>
                                 </div>
                                 <div class="col-md-6 h5">
-                                    @if(count($treatments) == 1)
-                                        {{ $treatments[0]->Year }}
+                                    @if($lastYear)
+                                        {{ $firstYear }} - {{ $lastYear }}
                                     @else
-                                        {{$treatments[0]->Year}} - {{ $treatments[count($treatments) - 1]->Year }}
+                                        {{ $firstYear  }}
                                     @endif
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            CHART.JS HERE
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a href="#covered" class="nav-link active" data-toggle="tab">Average Covered Charges</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#total" class="nav-link" data-toggle="tab">Total Payments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#medicare" class="nav-link" data-toggle="tab">Medicare Payments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#patients" class="nav-link" data-toggle="tab">Patients</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-4">
+                                <div class="tab-pane active show" id="covered">
+                                    <canvas id="covered-chart"></canvas>
+                                </div>
+                                <div class="tab-pane" id="total">
+                                    <canvas id="total-chart"></canvas>
+                                </div>
+                                <div class="tab-pane" id="medicare">
+                                    <canvas id="medicare-chart"></canvas>
+                                </div>
+                                <div class="tab-pane" id="patients">
+                                    <canvas id="patients-chart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{URL::asset('js/treatment-view.js')}}"></script>
 @endsection
