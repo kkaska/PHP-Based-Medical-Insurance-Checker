@@ -10,37 +10,71 @@ $(document).ready(function () {
     }
 
     $.get(url, function (response) {
-        let labels = [];
-        let data = [];
+        let data = {
+            AverageCoveredCharges: [],
+            AverageTotalPayments: [],
+            AverageMedicarePayments: [],
+            Years: [],
+            TotalDischarges: []
+        };
         response = JSON.parse(response);
         response.forEach(function (disease) {
-            labels.push(disease.Year);
-            data.push(disease.AverageCoveredCharges);
-            console.log(disease);
+            data.AverageCoveredCharges.push(disease.AverageCoveredCharges);
+            data.AverageTotalPayments.push(disease.AverageTotalPayments);
+            data.AverageMedicarePayments.push(disease.AverageMedicarePayments);
+            data.Years.push(disease.Year);
+            data.TotalDischarges.push(disease.TotalDischarges);
         });
-        var ctx = document.getElementById('treatment-chart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'line',
 
-            // The data for our dataset
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'AverageCoveredCharges',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: data
-                }]
-            },
-
-            // Configuration options go here
-            options: {
-                maintainAspectRatio: false
-            }
-        });
+        generateChart('covered-chart', 'Average Covered Charges', data.Years, 'rgb(243, 150, 154)', data.AverageCoveredCharges);
+        generateChart('total-chart', 'Average Total Payments', data.Years, 'rgb(108,195, 213)', data.AverageTotalPayments);
+        generateChart('medicare-chart', 'Average Medicare Payments', data.Years, 'rgb(255, 206, 103)', data.AverageMedicarePayments);
+        generateChart('patients-chart', 'Total Patients', data.Years, 'rgb(255, 120, 81)', data.TotalDischarges, false);
     });
 });
+
+function generateChart(id, label, years, colour, data, parseMoney = true) {
+    let ctx = document.getElementById(id).getContext('2d');
+    let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: label,
+                    borderColor: colour,
+                    data: data,
+                    fill: false
+                }
+            ]
+        },
+        legend: {
+            display: false,
+        },
+        options: {
+            legend: {
+                labels: {
+                    boxWidth: 20,
+                    usePointStyle: true,
+                },
+                position: 'bottom'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        callback: function (value) {
+                            if (parseMoney) {
+                                return value.toLocaleString("en-US", {style: "currency", currency: "USD"})
+                            } else {
+                                return value;
+                            }
+                        }
+                    }
+                }]
+            }
+        }
+    });
+}
 
 function initMap() {
 

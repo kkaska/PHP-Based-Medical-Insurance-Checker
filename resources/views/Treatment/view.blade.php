@@ -78,7 +78,34 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <canvas id="treatment-chart"></canvas>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a href="#covered" class="nav-link active" data-toggle="tab">Average Covered Charges</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#total" class="nav-link" data-toggle="tab">Total Payments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#medicare" class="nav-link" data-toggle="tab">Medicare Payments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#patients" class="nav-link" data-toggle="tab">Patients</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-4">
+                                <div class="tab-pane active show" id="covered">
+                                    <canvas id="covered-chart"></canvas>
+                                </div>
+                                <div class="tab-pane" id="total">
+                                    <canvas id="total-chart"></canvas>
+                                </div>
+                                <div class="tab-pane" id="medicare">
+                                    <canvas id="medicare-chart"></canvas>
+                                </div>
+                                <div class="tab-pane" id="patients">
+                                    <canvas id="patients-chart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
