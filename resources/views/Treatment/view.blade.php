@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h2 class="text-center">{{$hospital->Name}}</h2>
-                            <div class="row mt-4">
+                            <div class="row mt-4 align-items-center">
                                 <div class="col-md-6">
                                     <h4>
                                         <span class="fa fa-map-marker text-info"></span>
@@ -25,7 +25,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-2 align-items-center">
                                 <div class="col-md-6">
                                     <h4>
                                         <span class="fa fa-dollar text-info"></span>
@@ -36,7 +36,7 @@
                                     @parseMoney($averageCharges)
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-2 align-items-center">
                                 <div class="col-md-6">
                                     <h4>
                                         <span class="fa fa-dollar text-info"></span>
@@ -50,7 +50,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-2 align-items-center">
                                 <div class="col-md-6">
                                     <h4>
                                         <span class="fa fa-male text-info"></span>
@@ -61,7 +61,7 @@
                                     {{$averageAdmissions}} people
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-2 align-items-center">
                                 <div class="col-md-6">
                                     <h4>
                                         <span class="fa fa-calendar text-info"></span>
