@@ -5,7 +5,7 @@
         <div class="card-group">
             <div class="card overflow-auto border-success bg-light" style="min-height: 700px">
                 <div class="card-body pl-3 pr-3">
-                    <h1 class="text-center text-dark">{{$disease->Name}}</h1>
+                    <h1 class="text-center text-dark">{{$diseaseName}}</h1>
                     <hr class="my-4 w-75">
                     <div class="row">
                         <div class="col-md-6">
@@ -69,20 +69,21 @@
                                     </h4>
                                 </div>
                                 <div class="col-md-6 h5">
-                                    @if(count($treatments) == 1)
-                                        {{ $treatments[0]->Year }}
+                                    @if($lastYear)
+                                        {{ $firstYear }} - {{ $lastYear }}
                                     @else
-                                        {{$treatments[0]->Year}} - {{ $treatments[count($treatments) - 1]->Year }}
+                                        {{ $firstYear  }}
                                     @endif
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            CHART.JS HERE
+                            <canvas id="treatment-chart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{URL::asset('js/treatment-view.js')}}"></script>
 @endsection
