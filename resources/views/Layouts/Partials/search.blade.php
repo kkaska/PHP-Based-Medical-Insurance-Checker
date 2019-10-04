@@ -28,8 +28,8 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="City" required>
-                                    <label style="display: none" for="city">Address</label>
+                                    <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="Location" required>
+                                    <label style="display: none" for="city">city</label>
                                     <div class="input-group-append">
                                         <button id="Click to find location" class="btn btn-success text-darkgray font-weight-bold" type="button">Find</button>
                                     </div>
