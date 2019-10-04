@@ -94,8 +94,8 @@ function loadMap(lat, lng) {
 
 //make this function retrieve an html file and fill it out
 function getInfoWindowHTML(hospitalName, address, city, postCode, distance) {
-    let link = $('[data-hospital-address="' + address + '"]').attr('href'); // TODO: figure out why this doesn't work
-    console.log(link);
+    let link =  $('[data-hospital-address="' + address + '"] .btn').attr('href'); // TODO: figure out why this doesn't work
+
     return "<div class='container text-center'>" +
                 "<a href='" + link + "'><h5 class='firstHeading'>" + hospitalName + "</h5></a>" +      //TODO: Link this to the view for the selected hospital
                     "<div id='bodyContent'>" +
