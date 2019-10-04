@@ -7,12 +7,6 @@
                         <li class="nav-item">
                             <a class="nav-link font-weight-bold text-darkgray" href="{{ URL::to('/') }}/home">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link font-weight-bold text-darkgray" href="{{ URL::to('/') }}/search">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link font-weight-bold text-darkgray" href="{{ URL::to('/') }}/hospitals">Hospitals</a>
-                        </li>
                     </ul>
                 </nav>
             </div>
