@@ -9,8 +9,9 @@
                     <div class="form-row justify-content-center pl-2 pr-2">
                         <div class="col-xl-6">
                             <div class="form-group">
-                                <input class="typeahead form-control form-control-lg" type="text"  id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autocomplete="off">
+                                <input class="typeahead form-control form-control-lg" type="text"  id="disease" name="disease" aria-label="Disease" placeholder="Procedure" required autocomplete="off" />
                                 <label style="display: none" for="disease">procedure</label>
+                                <div class="invalid-feedback">Sorry, invalid procedure input. Please select one from the list.</div>
                             </div>
                         </div>
                         <div class="col-xl-2">
@@ -28,7 +29,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="Location" required>
+                                    <input type="text" class="form-control form-control-lg" id="city" name="city" aria-label="City" placeholder="Location" required />
                                     <label style="display: none" for="city">city</label>
                                     <div class="input-group-append">
                                         <button id="Click to find location" class="btn btn-success text-darkgray font-weight-bold" type="button">Find</button>
@@ -51,24 +52,34 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $( "#disease" ).autocomplete({
-                                             
             source: function(request, response) {
-             $.ajax({
-             url: "{{url('autocomplete')}}",
-            data: {
-                term : request.term
+                $.ajax({
+                    url: "{{url('autocomplete')}}",
+                    data: {
+                        term: request.term
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        var resp = $.map(data, function (obj) {
+                            return obj.Name;
+                        });
+
+                        response(resp);
+                    }
+                });
             },
-            dataType: "json",
-            success: function(data){
-                var resp = $.map(data,function(obj){
-                    return obj.Name;
-            }); 
-                                             
-                response(resp);
-            }
-            });
+            change: function (event, ui) {
+                if (!ui.item) {
+                    $('#disease').addClass('is-invalid');
+                }
+                else {
+                    $('#disease').removeClass('is-invalid');
+                }
             },
-        minLength: 2
+            select: function (event, ui) {
+                $('#disease').removeClass('is-invalid');
+            },
+            minLength: 2
         });
 
         $('#search-button').click(function () {
