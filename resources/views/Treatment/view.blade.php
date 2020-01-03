@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', $diseaseName)
 
 @section('content')
     <div class="container-fluid mb-3 mt-3">

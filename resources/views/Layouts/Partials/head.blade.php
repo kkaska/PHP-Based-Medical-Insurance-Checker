@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('css/customCSS.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('css/google-maps.css') }}">
+<link rel="icon" href="{{ asset('img/icon.png') }}" type="image/x-icon" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

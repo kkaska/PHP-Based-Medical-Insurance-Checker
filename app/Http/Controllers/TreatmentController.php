@@ -36,7 +36,7 @@ class TreatmentController
         $length = count($treatments);
         $lastYear = count($treatments) > 1 ? $treatments[count($treatments) - 1]->Year : null;
 
-        return view('Treatment/view', [
+        return view('treatment/view', [
             'diseaseName' => $disease->Name,
             'hospital' => $hospital,
             'averageCharges' => $averageCharges / $length,
